@@ -352,6 +352,8 @@ A nested deployment MUST satisfy the following invariants.
 
 7. No double counting. Enclosure exposure MUST NOT also be applied as an ingress discount to E_base: the federation trust factor discounts imported standing, and the Enclosure Domain measures current exposure. A profile MUST specify how overlapping evidence is combined across the ring's own domains and the Enclosure Domain. An enclosure MUST NOT publish an aggregate that contains an inner ring's protected telemetry and feed it back inward.
 
+The boundary cases for these invariants are published in specifications/conformance/nested-zones-v1.json. They fix decision requirements at the boundaries they name and do not define a formula for R.
+
 ### Depth 0 and Legacy Proofs
 
 A ring of depth 0 has no enclosure. Enclosure Domain processing is disabled and its Risk Factor is computed from its own three domains, as for a zone outside any nested deployment.

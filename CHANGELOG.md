@@ -62,8 +62,11 @@ do both. Proposed in #⧗.
   Injection, TM-FED-007 Ring Bypass, TM-FED-008 Enclosure Heat Poisoning,
   TM-FED-009 Topology Tampering, TM-FED-010 Enclosure Availability Denial
   and TM-FED-011 Inner-Zone Inference, and extends TM-FED-004's mitigation.
-- Conformance vectors for the five behaviors named in the proposal are not
-  included yet.
+- The boundary cases are published as `specifications/conformance/
+  nested-zones-v1.json`: sixteen vectors covering enclosure heat (both
+  outcomes), calm, the ring's own reading, attenuation per class step,
+  depth 0, fail-closed ingress, receipt bindings, egress shaping and
+  invalid declarations and topologies.
 
 A conformant implementation that relied on hierarchical inheritance, or on a
 lighter zone inside a harder one, stops conforming, so this requires a MAJOR
