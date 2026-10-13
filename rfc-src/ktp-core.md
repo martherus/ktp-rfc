@@ -379,6 +379,8 @@ A person's Trust Score is the measure of the zone that computes it. It bears on 
 
 A person MAY contest a decision on their standing by whatever route this set gives any subject. Nothing in this section narrows that route, and standing is never a prerequisite for explanation, correction, or review.
 
+The boundary cases for a person's standing are published in specifications/conformance/person-standing-v1.json. They fix what enters a person's standing and where it bears, and do not define a formula for E_base or R.
+
 ### Peer Signals
 
 Where a deployment implements peer validation, peer signals occupy a distinct term. They MUST NOT be folded into Proof of Resilience or the External Root.

@@ -56,6 +56,9 @@ Scores and be subject to A ≤ E. Both could not hold. Proposed in #162.
   an employer, a licensing body or a board. Persons stand behind the
   attestation branch of the root instrument; that branch is not locked to any
   lineage stage.
+- Conformance: `specifications/conformance/person-standing-v1.json`, twelve
+  vectors fixing what enters a person's standing, where it bears, and how it
+  crosses a zone boundary. They do not define a formula for E_base or R.
 - Zones and Federation: a person's standing crosses a federation link only as
   the agreement provides, through the receiving zone's directional trust
   factor and zone-mass ceiling, from zero up to that ceiling. Nothing

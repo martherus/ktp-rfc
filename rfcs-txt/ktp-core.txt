@@ -81,30 +81,30 @@ Table of Contents
        5.1.2.  Peer Signals  . . . . . . . . . . . . . . . . . . . .  17
        5.1.3.  Ceilings  . . . . . . . . . . . . . . . . . . . . . .  18
        5.1.4.  Base Trust Calculation  . . . . . . . . . . . . . . .  19
-     5.2.  Risk Factor (R) . . . . . . . . . . . . . . . . . . . . .  20
-       5.2.1.  Risk Domains  . . . . . . . . . . . . . . . . . . . .  21
-     5.3.  Effective Trust Score (E_trust) . . . . . . . . . . . . .  22
+     5.2.  Risk Factor (R) . . . . . . . . . . . . . . . . . . . . .  21
+       5.2.1.  Risk Domains  . . . . . . . . . . . . . . . . . . . .  22
+     5.3.  Effective Trust Score (E_trust) . . . . . . . . . . . . .  23
      5.4.  Trust Velocity (dE/dt)  . . . . . . . . . . . . . . . . .  23
-     5.5.  Trust Score Integrity (Anti-Goodhart Measures)  . . . . .  23
+     5.5.  Trust Score Integrity (Anti-Goodhart Measures)  . . . . .  24
        5.5.1.  The Goodhart Threat Model . . . . . . . . . . . . . .  24
-       5.5.2.  Multi-Dimensional Scoring . . . . . . . . . . . . . .  24
-       5.5.3.  Behavioral Unpredictability . . . . . . . . . . . . .  24
+       5.5.2.  Multi-Dimensional Scoring . . . . . . . . . . . . . .  25
+       5.5.3.  Behavioral Unpredictability . . . . . . . . . . . . .  25
        5.5.4.  Adversity Requirements  . . . . . . . . . . . . . . .  25
-       5.5.5.  Peer Validation . . . . . . . . . . . . . . . . . . .  25
-       5.5.6.  Temporal Consistency  . . . . . . . . . . . . . . . .  25
+       5.5.5.  Peer Validation . . . . . . . . . . . . . . . . . . .  26
+       5.5.6.  Temporal Consistency  . . . . . . . . . . . . . . . .  26
        5.5.7.  Cross-Zone Correlation  . . . . . . . . . . . . . . .  26
-       5.5.8.  Human-in-the-Loop Sampling  . . . . . . . . . . . . .  26
-       5.5.9.  Gradient Isolation  . . . . . . . . . . . . . . . . .  26
+       5.5.8.  Human-in-the-Loop Sampling  . . . . . . . . . . . . .  27
+       5.5.9.  Gradient Isolation  . . . . . . . . . . . . . . . . .  27
        5.5.10. Fundamental Limits  . . . . . . . . . . . . . . . . .  27
-   6.  Risk Factors  . . . . . . . . . . . . . . . . . . . . . . . .  27
-     6.1.  The Seven Dimensions  . . . . . . . . . . . . . . . . . .  27
-     6.2.  The Soul Veto . . . . . . . . . . . . . . . . . . . . . .  31
-     6.3.  The Carriage Interface for Normative Content  . . . . . .  33
+   6.  Risk Factors  . . . . . . . . . . . . . . . . . . . . . . . .  28
+     6.1.  The Seven Dimensions  . . . . . . . . . . . . . . . . . .  28
+     6.2.  The Soul Veto . . . . . . . . . . . . . . . . . . . . . .  32
+     6.3.  The Carriage Interface for Normative Content  . . . . . .  34
      6.4.  Normalization . . . . . . . . . . . . . . . . . . . . . .  34
-     6.5.  Domain Weights  . . . . . . . . . . . . . . . . . . . . .  34
-     6.6.  Risk Factor Modularity  . . . . . . . . . . . . . . . . .  35
-     6.7.  Aggregation Algorithm . . . . . . . . . . . . . . . . . .  37
-     6.8.  Undefined Inputs  . . . . . . . . . . . . . . . . . . . .  40
+     6.5.  Domain Weights  . . . . . . . . . . . . . . . . . . . . .  35
+     6.6.  Risk Factor Modularity  . . . . . . . . . . . . . . . . .  36
+     6.7.  Aggregation Algorithm . . . . . . . . . . . . . . . . . .  38
+     6.8.  Undefined Inputs  . . . . . . . . . . . . . . . . . . . .  41
    7.  Trust Proof Token . . . . . . . . . . . . . . . . . . . . . .  41
 
 
@@ -115,7 +115,7 @@ Internet-Draft                  KTP-CORE                    October 2026
 
 
      7.1.  Token Format  . . . . . . . . . . . . . . . . . . . . . .  42
-     7.2.  Claims  . . . . . . . . . . . . . . . . . . . . . . . . .  42
+     7.2.  Claims  . . . . . . . . . . . . . . . . . . . . . . . . .  43
      7.3.  Signature . . . . . . . . . . . . . . . . . . . . . . . .  45
      7.4.  Operational Readiness for the Requested Action  . . . . .  46
      7.5.  Lifetime  . . . . . . . . . . . . . . . . . . . . . . . .  48
@@ -933,18 +933,18 @@ Internet-Draft                  KTP-CORE                    October 2026
    route, and standing is never a prerequisite for explanation,
    correction, or review.
 
+   The boundary cases for a person's standing are published in
+   specifications/conformance/person-standing-v1.json.  They fix what
+   enters a person's standing and where it bears, and do not define a
+   formula for E_base or R.
+
 5.1.2.  Peer Signals
 
    Where a deployment implements peer validation, peer signals occupy a
    distinct term.  They MUST NOT be folded into Proof of Resilience or
    the External Root.
 
-   The deployment MUST declare the peer share it applies, within the
-   range given in Section 5.5.5 (Peer Validation), in the Trust Proof.
-   The remaining share is distributed across the base terms in their
-   published proportions.  A relying party MUST evaluate E_base against
-   the declared share and MUST NOT compare magnitudes across deployments
-   that declare different shares.
+
 
 
 
@@ -953,6 +953,13 @@ Perkins                   Expires 15 April 2027                [Page 17]
 
 Internet-Draft                  KTP-CORE                    October 2026
 
+
+   The deployment MUST declare the peer share it applies, within the
+   range given in Section 5.5.5 (Peer Validation), in the Trust Proof.
+   The remaining share is distributed across the base terms in their
+   published proportions.  A relying party MUST evaluate E_base against
+   the declared share and MUST NOT compare magnitudes across deployments
+   that declare different shares.
 
    Peer signals MUST be independent of the base terms.  A signal that
    duplicates information already captured by Proof of Resilience or the
@@ -991,6 +998,18 @@ Internet-Draft                  KTP-CORE                    October 2026
    Every ceiling applicable to an evaluation MUST be declared in the
    Trust Proof (the applicable_ceilings claim).
 
+
+
+
+
+
+
+
+Perkins                   Expires 15 April 2027                [Page 18]
+
+Internet-Draft                  KTP-CORE                    October 2026
+
+
    Each ceiling states an independent reason to withhold trust.  Reasons
    to withhold do not average.  A ceiling that does not bind an agent —
    the terminal generation ceiling of 100, which no composition of
@@ -1003,14 +1022,49 @@ Internet-Draft                  KTP-CORE                    October 2026
    issued by fiat — a genesis grant, an inheritance bonus — is bounded
    by the same minimum as standing that is earned.
 
+5.1.4.  Base Trust Calculation
 
 
-Perkins                   Expires 15 April 2027                [Page 18]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Perkins                   Expires 15 April 2027                [Page 19]
 
 Internet-Draft                  KTP-CORE                    October 2026
 
-
-5.1.4.  Base Trust Calculation
 
    Let w_p be the declared peer share in points, 0 where peer
    validation is not implemented. The three shares sum to 100:
@@ -1058,16 +1112,15 @@ Internet-Draft                  KTP-CORE                    October 2026
    change, when an external attestation is issued, renewed, withdrawn,
    or expires, and when a for-cause claim is adjudicated.
 
+   E_base SHOULD be cached for performance, with a maximum cache
+   lifetime of 60 seconds.
 
 
 
-Perkins                   Expires 15 April 2027                [Page 19]
+Perkins                   Expires 15 April 2027                [Page 20]
 
 Internet-Draft                  KTP-CORE                    October 2026
 
-
-   E_base SHOULD be cached for performance, with a maximum cache
-   lifetime of 60 seconds.
 
 5.2.  Risk Factor (R)
 
@@ -1114,16 +1167,16 @@ Internet-Draft                  KTP-CORE                    October 2026
    Factor whose declared subset cannot be populated is unobservable and
    takes 1.0.
 
+   Unobservability is therefore checked at three layers, and a
+   deployment MUST apply the rule at each:
 
 
 
-Perkins                   Expires 15 April 2027                [Page 20]
+
+Perkins                   Expires 15 April 2027                [Page 21]
 
 Internet-Draft                  KTP-CORE                    October 2026
 
-
-   Unobservability is therefore checked at three layers, and a
-   deployment MUST apply the rule at each:
 
    1.  The FEED, per [KTP-SENSORS] Section 6.1 and 6.2 - a source that
        has failed or whose observation has passed its staleness
@@ -1171,15 +1224,15 @@ Internet-Draft                  KTP-CORE                    October 2026
 
    The final Risk Factor aggregates all three levels:
 
+      R = (w_node × R_node) + (w_neighborhood × R_neighborhood) +
+          (w_global × R_global)
 
 
-Perkins                   Expires 15 April 2027                [Page 21]
+
+Perkins                   Expires 15 April 2027                [Page 22]
 
 Internet-Draft                  KTP-CORE                    October 2026
 
-
-      R = (w_node × R_node) + (w_neighborhood × R_neighborhood) +
-          (w_global × R_global)
 
    This three-level structure prevents a single node spike from causing
    tier oscillation while ensuring that genuine widespread degradation
@@ -1223,22 +1276,19 @@ Internet-Draft                  KTP-CORE                    October 2026
    constant across all three scenarios.  It is the environment that
    changes what is possible.
 
-
-
-
-
-
-
-Perkins                   Expires 15 April 2027                [Page 22]
-
-Internet-Draft                  KTP-CORE                    October 2026
-
-
 5.4.  Trust Velocity (dE/dt)
 
    Trust Velocity is the rate of change of E_trust over time:
 
       dE/dt = (E_trust_t - E_trust_(t-1)) / delta_t
+
+
+
+
+Perkins                   Expires 15 April 2027                [Page 23]
+
+Internet-Draft                  KTP-CORE                    October 2026
+
 
    Where delta_t is the time interval between measurements.
 
@@ -1280,16 +1330,6 @@ Internet-Draft                  KTP-CORE                    October 2026
    general case.  But we can make gaming expensive, detectable, and
    risky.  This section specifies required countermeasures.
 
-
-
-
-
-
-Perkins                   Expires 15 April 2027                [Page 23]
-
-Internet-Draft                  KTP-CORE                    October 2026
-
-
 5.5.1.  The Goodhart Threat Model
 
    Attack: Agent learns Trust Score calculation Goal: Maximize E_trust
@@ -1298,6 +1338,13 @@ Internet-Draft                  KTP-CORE                    October 2026
    Sybil networks (create false attestation sources) - Timing attacks
    (act well when observed, poorly when not) - Gradient hacking (if ML-
    based, manipulate training)
+
+
+
+Perkins                   Expires 15 April 2027                [Page 24]
+
+Internet-Draft                  KTP-CORE                    October 2026
+
 
    The fundamental challenge: Any observable signal used to calculate
    trust can potentially be faked.  The question is cost.
@@ -1338,14 +1385,6 @@ Internet-Draft                  KTP-CORE                    October 2026
    score was correctly calculated given the (unpredictable but recorded)
    parameters in effect at that time.
 
-
-
-
-Perkins                   Expires 15 April 2027                [Page 24]
-
-Internet-Draft                  KTP-CORE                    October 2026
-
-
 5.5.4.  Adversity Requirements
 
    GOODHART-003: E_base MUST include demonstrated performance under
@@ -1353,6 +1392,15 @@ Internet-Draft                  KTP-CORE                    October 2026
 
    Proof of Resilience already requires crisis-time attestations.  This
    section strengthens that requirement:
+
+
+
+
+
+Perkins                   Expires 15 April 2027                [Page 25]
+
+Internet-Draft                  KTP-CORE                    October 2026
+
 
    *  Agents with no adversity exposure are capped at E_base = 60 -
       E_base > 60 requires attestations under R > 0.5 - E_base > 80
@@ -1394,14 +1442,6 @@ Internet-Draft                  KTP-CORE                    October 2026
    window - High volatility (inconsistent behavior) reduces E_base -
    Volatility_penalty = std_dev(behavior_vector) * penalty_rate
 
-
-
-
-Perkins                   Expires 15 April 2027                [Page 25]
-
-Internet-Draft                  KTP-CORE                    October 2026
-
-
    Gaming resistance: Maintaining a false persona over thousands of
    transactions is expensive.  The longer the trajectory required, the
    more costly the attack.
@@ -1410,6 +1450,13 @@ Internet-Draft                  KTP-CORE                    October 2026
 
    GOODHART-006: Federated zones SHOULD share anonymized behavioral
    statistics to detect cross-zone gaming.
+
+
+
+Perkins                   Expires 15 April 2027                [Page 26]
+
+Internet-Draft                  KTP-CORE                    October 2026
+
 
    Shared statistics: - Distribution of E_base scores (not individual
    scores) - Behavioral cluster signatures (not individual trajectories)
@@ -1450,14 +1497,6 @@ Internet-Draft                  KTP-CORE                    October 2026
    required - Model weights are not published (security through partial
    obscurity)
 
-
-
-
-Perkins                   Expires 15 April 2027                [Page 26]
-
-Internet-Draft                  KTP-CORE                    October 2026
-
-
    Rationale: An agent that can influence its own training data can
    perform gradient hacking — subtly manipulating the model to favor its
    behavior patterns.
@@ -1466,6 +1505,14 @@ Internet-Draft                  KTP-CORE                    October 2026
 
    These measures make gaming expensive and detectable.  They do not
    make it impossible.  The honest assessment:
+
+
+
+
+Perkins                   Expires 15 April 2027                [Page 27]
+
+Internet-Draft                  KTP-CORE                    October 2026
+
 
    WHAT WE CAN DO: - Make single-dimension gaming ineffective - Make
    sustained gaming expensive - Detect statistical anomalies - Create
@@ -1505,15 +1552,6 @@ Internet-Draft                  KTP-CORE                    October 2026
       - Device count on network
       - CO2 levels (proxy for human occupancy)
 
-
-
-
-
-Perkins                   Expires 15 April 2027                [Page 27]
-
-Internet-Draft                  KTP-CORE                    October 2026
-
-
       Interpretation:
       - Low evidence_density: Empty building, quiet conditions
       - High evidence_density: Packed stadium, high RF interference
@@ -1523,6 +1561,14 @@ Internet-Draft                  KTP-CORE                    October 2026
    movement through the environment.
 
    1.  trust_trend
+
+
+
+
+Perkins                   Expires 15 April 2027                [Page 28]
+
+Internet-Draft                  KTP-CORE                    October 2026
+
 
       Analogy (informative): Momentum (P) — Kinetic Energy
       (KE = 1/2 mv^2)
@@ -1562,14 +1608,6 @@ Internet-Draft                  KTP-CORE                    October 2026
       - Low adversarial_pressure: Cool, stable operations
       - High adversarial_pressure: Hot, active attack or system stress
 
-
-
-
-Perkins                   Expires 15 April 2027                [Page 28]
-
-Internet-Draft                  KTP-CORE                    October 2026
-
-
    Impact: adversarial_pressure is the deflator. As it rises, the
    structural integrity of trust degrades; sustained highs trigger the "Cool-Down"
    cycle (Freezing agents to Observer Mode).
@@ -1580,6 +1618,13 @@ Internet-Draft                  KTP-CORE                    October 2026
 
       Measures the criticality of the current moment relative to an
       event horizon - where in a temporal cycle the system is.
+
+
+
+Perkins                   Expires 15 April 2027                [Page 29]
+
+Internet-Draft                  KTP-CORE                    October 2026
+
 
       Sensors:
       - Event schedules (e.g., "5 minutes to Kickoff")
@@ -1614,18 +1659,6 @@ Internet-Draft                  KTP-CORE                    October 2026
       Measures the topological importance of a node - how hard is it
       to move or stop this asset, and how much depends on it.
 
-
-
-
-
-
-
-
-Perkins                   Expires 15 April 2027                [Page 29]
-
-Internet-Draft                  KTP-CORE                    October 2026
-
-
       Sensors:
       - Network topology (degree centrality, betweenness)
       - Dependency graph depth (downstream services)
@@ -1640,6 +1673,14 @@ Internet-Draft                  KTP-CORE                    October 2026
     Impact: a core router has high update_resistance; an edge IoT
     device has low. High-resistance nodes require higher Trust Scores to
     modify - they resist change.
+
+
+
+
+Perkins                   Expires 15 April 2027                [Page 30]
+
+Internet-Draft                  KTP-CORE                    October 2026
+
 
    1.  attestation_coverage
 
@@ -1672,16 +1713,6 @@ Internet-Draft                  KTP-CORE                    October 2026
       Analogy (informative): Soul (S) — The Cosmological Constant /
       Immutable Law
 
-
-
-
-
-
-Perkins                   Expires 15 April 2027                [Page 30]
-
-Internet-Draft                  KTP-CORE                    October 2026
-
-
       Measures the ethical, legal, and spiritual constraints of the
       physical location or data lineage - constraints that exist
       independent of operational conditions.
@@ -1699,6 +1730,13 @@ Internet-Draft                  KTP-CORE                    October 2026
       Interpretation:
       - soul = 0: No sovereignty constraints apply
       - soul = 1: Sovereignty constraint violated, action forbidden
+
+
+
+Perkins                   Expires 15 April 2027                [Page 31]
+
+Internet-Draft                  KTP-CORE                    October 2026
+
 
       Impact: This acts as a Boolean Veto or a hard limit. It
       represents the "Spirit" of the data or location. If the Soul
@@ -1727,17 +1765,6 @@ Internet-Draft                  KTP-CORE                    October 2026
    *  High Trust Score - Low Risk Factor - Emergency procedures -
       Administrative override
 
-
-
-
-
-
-
-Perkins                   Expires 15 April 2027                [Page 31]
-
-Internet-Draft                  KTP-CORE                    October 2026
-
-
    This is by design.  The Soul veto encodes constraints that exist
    outside the operational domain - legal treaties, cultural
    sovereignty, spiritual significance.  These are not "policies" that
@@ -1758,6 +1785,14 @@ Internet-Draft                  KTP-CORE                    October 2026
       If an agent action would violate a TK Label, S = 1.
 
    1.  OCAP/CARE Principles:
+
+
+
+
+Perkins                   Expires 15 April 2027                [Page 32]
+
+Internet-Draft                  KTP-CORE                    October 2026
+
 
       For Indigenous data, the OCAP principles (Ownership, Control,
       Access, Possession) and CARE principles (Collective benefit,
@@ -1785,15 +1820,6 @@ Internet-Draft                  KTP-CORE                    October 2026
       - Data about Indigenous peoples
       - Data derived from traditional knowledge
 
-
-
-
-
-Perkins                   Expires 15 April 2027                [Page 32]
-
-Internet-Draft                  KTP-CORE                    October 2026
-
-
       Even if the data has moved to cloud infrastructure, its Soul
       travels with it. If an action would violate origin sovereignty,
       S = 1.
@@ -1816,6 +1842,13 @@ Internet-Draft                  KTP-CORE                    October 2026
         "note": "Trust Score is sufficient, but action is
                  forbidden by sovereignty constraint"
       }
+
+
+
+Perkins                   Expires 15 April 2027                [Page 33]
+
+Internet-Draft                  KTP-CORE                    October 2026
+
 
    Note that e_trust and e_required are provided for transparency, but
    the denial is not due to insufficient trust - it is due to an
@@ -1842,14 +1875,6 @@ Internet-Draft                  KTP-CORE                    October 2026
    Norm content MUST NOT rewrite the aggregation.  A normative judgment
    that scales capacity rather than gating it has crossed into the
    measurement layer, and the crossing is the failure this interface
-
-
-
-Perkins                   Expires 15 April 2027                [Page 33]
-
-Internet-Draft                  KTP-CORE                    October 2026
-
-
    exists to prevent.  The prudence judgments this series computes from
    the environment ([KTP-ENFORCE]'s graduated outcomes) are not
    normative content and do not pass through this interface: their
@@ -1872,6 +1897,14 @@ Internet-Draft                  KTP-CORE                    October 2026
    be clamped to 1.
 
    Example normalization thresholds:
+
+
+
+
+Perkins                   Expires 15 April 2027                [Page 34]
+
+Internet-Draft                  KTP-CORE                    October 2026
+
 
    +------------+------------+------------+------------+
    | Input                | Sensor     | s_min | s_max     |
@@ -1896,16 +1929,6 @@ Internet-Draft                  KTP-CORE                    October 2026
    Boolean and non-numeric values are invalid.  Soul is not weighted -
    it operates as an independent constraint.
 
-
-
-
-
-
-Perkins                   Expires 15 April 2027                [Page 34]
-
-Internet-Draft                  KTP-CORE                    October 2026
-
-
    The complete weight declaration MUST be validated before computing R
    and after every reconfiguration.  An invalid declaration MUST be
    rejected; an implementation MUST NOT silently rescale the weights or
@@ -1928,6 +1951,16 @@ Internet-Draft                  KTP-CORE                    October 2026
    Healthcare: evidence_density=0.10, trust_trend=0.15,
    adversarial_pressure=0.25, moment_criticality=0.15,
    update_resistance=0.20, attestation_coverage=0.15
+
+
+
+
+
+
+Perkins                   Expires 15 April 2027                [Page 35]
+
+Internet-Draft                  KTP-CORE                    October 2026
+
 
    Cloud Infrastructure: evidence_density=0.05, trust_trend=0.25,
    adversarial_pressure=0.30, moment_criticality=0.10,
@@ -1954,14 +1987,6 @@ Internet-Draft                  KTP-CORE                    October 2026
       implementations MAY define additional inputs for domain-specific
       requirements.
 
-
-
-
-Perkins                   Expires 15 April 2027                [Page 35]
-
-Internet-Draft                  KTP-CORE                    October 2026
-
-
       Additional inputs MUST:
       - Be clearly documented with the quantity measured, its units,
         and its measurement procedure
@@ -1980,31 +2005,6 @@ Internet-Draft                  KTP-CORE                    October 2026
       - New feeds can be added to existing inputs
       - Feed sources can be local or federated
 
-      Example: The Soul input might aggregate:
-      - TK Labels API (enabled)
-      - OCAP registry (enabled)
-      - Sacred Land geofence service (enabled)
-      - Treaty database (disabled - not applicable)
-      - Custom cultural heritage API (enabled)
-
-   Feed Configuration Example:
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -2017,6 +2017,15 @@ Perkins                   Expires 15 April 2027                [Page 36]
 
 Internet-Draft                  KTP-CORE                    October 2026
 
+
+      Example: The Soul input might aggregate:
+      - TK Labels API (enabled)
+      - OCAP registry (enabled)
+      - Sacred Land geofence service (enabled)
+      - Treaty database (disabled - not applicable)
+      - Custom cultural heritage API (enabled)
+
+   Feed Configuration Example:
 
       {
         "dimension": "soul",
@@ -2052,6 +2061,19 @@ Internet-Draft                  KTP-CORE                    October 2026
    For the six weighted inputs, typical aggregation is
    "weighted_average" of enabled feeds.
 
+
+
+
+
+
+
+
+
+Perkins                   Expires 15 April 2027                [Page 37]
+
+Internet-Draft                  KTP-CORE                    October 2026
+
+
 6.7.  Aggregation Algorithm
 
    The software-agent aggregation algorithm is below.  For human
@@ -2065,14 +2087,6 @@ Internet-Draft                  KTP-CORE                    October 2026
    replace grants or the operation-specific prerequisites below.
 
    Step 1: Soul Veto Check (MUST be first)
-
-
-
-
-Perkins                   Expires 15 April 2027                [Page 37]
-
-Internet-Draft                  KTP-CORE                    October 2026
-
 
       IF S > 0 THEN
         RETURN supervision = silent_veto
@@ -2103,6 +2117,19 @@ Internet-Draft                  KTP-CORE                    October 2026
    the same declared scale and describe the same candidate action.
    Boolean values, non-numeric values, NaN, and infinities are invalid.
 
+
+
+
+
+
+
+
+
+Perkins                   Expires 15 April 2027                [Page 38]
+
+Internet-Draft                  KTP-CORE                    October 2026
+
+
       IF A or E_trust is not a finite, non-negative number THEN
         RETURN supervision = silent_veto
                with reason TRUST_INSUFFICIENT
@@ -2122,13 +2149,6 @@ Internet-Draft                  KTP-CORE                    October 2026
 
       margin = 1 - (A / E_trust)
         (E_trust > 0 and A <= E_trust at this point)
-
-
-
-Perkins                   Expires 15 April 2027                [Page 38]
-
-Internet-Draft                  KTP-CORE                    October 2026
-
 
       IF margin <= M_veto THEN
         RETURN supervision = silent_veto
@@ -2156,6 +2176,16 @@ Internet-Draft                  KTP-CORE                    October 2026
    M_veto = M_allow = 0 and the existing zero-margin veto.  An
    explicitly declared equal pair is invalid.
 
+
+
+
+
+
+Perkins                   Expires 15 April 2027                [Page 39]
+
+Internet-Draft                  KTP-CORE                    October 2026
+
+
    At A = E_trust > 0 the independent capacity veto does not fire, but
    margin is zero and the current default and valid declared thresholds
    veto it.  This preserves the existing margin contract; it does not
@@ -2176,15 +2206,6 @@ Internet-Draft                  KTP-CORE                    October 2026
    or record in this series MUST NOT encode the verbs as an enumerated
    decision type; the result (supervision and tightenedConstraints) is
    the normative object and the verb is derived from it.
-
-
-
-
-
-Perkins                   Expires 15 April 2027                [Page 39]
-
-Internet-Draft                  KTP-CORE                    October 2026
-
 
    The Soul veto is evaluated first because sovereignty constraints are
    immutable - no amount of trust can override them.  This ordering
@@ -2214,6 +2235,13 @@ Internet-Draft                  KTP-CORE                    October 2026
    | Soul       | On-demand (per action) |
    +------------+------------------------+
 
+
+
+Perkins                   Expires 15 April 2027                [Page 40]
+
+Internet-Draft                  KTP-CORE                    October 2026
+
+
    Soul is evaluated on-demand because sovereignty constraints may be
    action-specific (e.g., "read" may be permitted while "modify" is
    forbidden by TK labels).
@@ -2234,14 +2262,6 @@ Internet-Draft                  KTP-CORE                    October 2026
    "Toward permission" is the operative phrase.  Failing closed does not
    mean denying on every unknown.  Where a decision point offers a
    graded outcome - the supervision ladder of Section 6.7 (Aggregation
-
-
-
-Perkins                   Expires 15 April 2027                [Page 40]
-
-Internet-Draft                  KTP-CORE                    October 2026
-
-
    Algorithm) - an undefined input clamps the result to a more
    supervised level, per [KINETIC-ENVELOPE]: an unknown environment
    reads as low capacity, not high.  Denial is the terminal case,
@@ -2261,6 +2281,22 @@ Internet-Draft                  KTP-CORE                    October 2026
 
    The Trust Proof is a signed token that travels with each request,
    carrying the current Trust Score and environmental context.
+
+
+
+
+
+
+
+
+
+
+
+
+Perkins                   Expires 15 April 2027                [Page 41]
+
+Internet-Draft                  KTP-CORE                    October 2026
+
 
    The standing-bearing claims and examples in this section describe
    software agents.  They do not define a human proof format.  Accepting
@@ -2287,17 +2323,6 @@ Internet-Draft                  KTP-CORE                    October 2026
    Crypto requirements; this specification supplies no compatibility
    fallback around them.
 
-
-
-
-
-
-
-Perkins                   Expires 15 April 2027                [Page 41]
-
-Internet-Draft                  KTP-CORE                    October 2026
-
-
 7.1.  Token Format
 
    The Trust Proof extends JSON Web Token (JWT) as defined in RFC 7519.
@@ -2319,6 +2344,15 @@ Internet-Draft                  KTP-CORE                    October 2026
 
    The "typ" field MUST be "ktp+jwt" to distinguish KTP Trust Proofs
    from standard JWTs.
+
+
+
+
+
+Perkins                   Expires 15 April 2027                [Page 42]
+
+Internet-Draft                  KTP-CORE                    October 2026
+
 
    The "kid" field identifies the Trust Oracle signing key, enabling key
    rotation and multi-Oracle deployments.
@@ -2344,16 +2378,6 @@ Internet-Draft                  KTP-CORE                    October 2026
       de_dt: Trust Velocity (change per second)
       sigma: Trust Volatility (standard deviation)
 
-
-
-
-
-
-Perkins                   Expires 15 April 2027                [Page 42]
-
-Internet-Draft                  KTP-CORE                    October 2026
-
-
       risk_factors: Object containing the six normalized inputs
         adversarial_pressure (0-1)
         attestation_coverage (0-1)
@@ -2375,30 +2399,6 @@ Internet-Draft                  KTP-CORE                    October 2026
       resilience_hash: Hash of current Proof of Resilience ledger
 
    Example Trust Proof payload (no sovereignty constraint):
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
