@@ -1061,6 +1061,8 @@ Cloud Infrastructure: evidence_density=0.06, trust_trend=0.28, adversarial_press
 
 Indigenous Data Repository: evidence_density=0.11, trust_trend=0.11, adversarial_pressure=0.22, update_resistance=0.17, attestation_coverage=0.39 (Note: High Observer weight reflects community oversight; Soul veto always active for TK-labeled data)
 
+When a weighted input leaves R, every published profile renormalizes proportionally to two decimals, and the rounding residual goes to the largest remaining weight. The profiles above are the v2.1.0 profiles under that rule.
+
 Implementations MUST allow configuration of domain weights. Implementations SHOULD provide pre-defined profiles for common domains.
 
 ## Risk Factor Modularity
@@ -1938,6 +1940,10 @@ An externally supplied input enters only on the demand or supervision side. It
 deployment **MUST** declare its supplier. The supplier is ordinarily the
 deployment's own event calendar, maintenance schedule or mission-phase feed; the
 feeds KTP-SENSORS lists for this input remain its feeds.
+
+The declaration and evaluation boundary cases for a demand input are published
+in specifications/conformance/demand-input-v1.json. They fix decision
+requirements at those boundaries and do not define a formula for A, R or E.
 
 Converts to spec text when the task-side domain lands, giving this quantity
 signals to aggregate and stating the supplier, the units, and the verification

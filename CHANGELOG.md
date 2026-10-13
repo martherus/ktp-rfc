@@ -28,8 +28,13 @@ the number that loosened the constraint. Proposed in #161.
   and the weight regression gate check five factors and the new declaration.
 - The signed trajectory fixture is regenerated from the repository's own test
   keys over the five-input Risk Factors object.
-- Conformance vectors for the five behaviors named in the proposal are not
-  included yet.
+- `specifications/conformance/demand-input-v1.json` (11 vectors) fixes the
+  declaration and evaluation boundaries: a declared supplier's value raises
+  `A` only; a requester or a party acting for it as supplier is refused; a
+  missing declaration, a stale value and a differently bound value read as
+  the most critical moment; six-factor and non-summing profiles are
+  invalid; the renormalization rule reproduces the Stadium profile; the
+  kickoff example still vetoes.
 
 A conformant implementation that aggregates six inputs, or that accepts the
 criticality value from the action request, stops conforming, so this requires

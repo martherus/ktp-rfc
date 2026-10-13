@@ -202,6 +202,10 @@ def check(profile):
                 if not isinstance(spec, dict):
                     fails.append(f"shape: demand_inputs.{name} must be an object")
                     continue
+                for extra in set(spec) - set(DEMAND_FIELDS) - {"range"}:
+                    fails.append(f"shape: demand_inputs.{name}.{extra} is not a demand-input "
+                                 "field; a demand input declares supplier, unit, source and an "
+                                 "optional range, and never signals, an aggregation or a weight")
                 for field in DEMAND_FIELDS:
                     v = spec.get(field)
                     if not (isinstance(v, str) and v.strip()):
