@@ -582,11 +582,11 @@ Internet-Draft                 KTP-REPAIR                   October 2026
    declared contingency, and only what it declared: an order of
    reconciliation by residual harm and by criticality, declared in the
    profile and never chosen per case; verifiers obtained from a
-   federation peer under a treaty, each independent of every party by
-   the same test as any verifier; and a tightening of the admission of
-   consequential acts, so that the zone generates fewer breaches while
-   it repairs.  A contingency that is not declared in the profile is not
-   available.
+   federation peer under a Federation Agreement, each independent of
+   every party by the same test as any verifier; and a tightening of the
+   admission of consequential acts, so that the zone generates fewer
+   breaches while it repairs.  A contingency that is not declared in the
+   profile is not available.
 
    Crisis: utilization at or above two, held over the recovery window.
    The zone *MAY* declare a repair emergency under [KTP-EMERGENCY], and
@@ -819,7 +819,7 @@ Internet-Draft                 KTP-REPAIR                   October 2026
    amendment or the federation boundary.  [KTP-CORE] names both among
    the limits of the set: the mechanism by which an amendment is made
    and ratified inside a zone, and the reconciliation of a breach
-   carried into another zone under a treaty.
+   carried into another zone under a Federation Agreement.
 
 12.  References
 

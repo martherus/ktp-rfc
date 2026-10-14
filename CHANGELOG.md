@@ -63,7 +63,7 @@ than they can be repaired.
   reproduction of breaches.
   Repair runs in three declared tiers: reserve gone (nothing changes but
   heat), debt growth (a declared contingency: triage order, verifier mutual aid
-  under treaty, tightened admission), and crisis (a repair emergency only under
+  under a Federation Agreement, tightened admission), and crisis (a repair emergency only under
   the emergency specification's custodians). No tier changes the precondition,
   the Δ floor, the verifier's independence, the stock, re-entry on silence, or
   per-person reporting. One lineage's share of arrival is capped; effective

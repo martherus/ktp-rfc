@@ -3238,10 +3238,10 @@ Internet-Draft                  KTP-CORE                    October 2026
    and that a recurring breach pattern puts the rule itself in repair.
    This specification does not state the mechanism by which an amendment
    is made and ratified inside a zone, and does not state how a breach
-   carried into another zone under a treaty is reconciled there.  The
-   lineage-summed bound on sponsorship under unreconciled breach that
-   [KTP-REPAIR] specifies is the first of the lineage-summed bounds this
-   specification has named as owed; the mass ceiling summed over a
+   carried into another zone under a Federation Agreement is reconciled
+   there.  The lineage-summed bound on sponsorship under unreconciled
+   breach that [KTP-REPAIR] specifies is the first of the lineage-summed
+   bounds this specification has named as owed; the mass ceiling summed
 
 
 
@@ -3250,13 +3250,13 @@ Perkins                   Expires 7 April 2027                 [Page 58]
 Internet-Draft                  KTP-CORE                    October 2026
 
 
-   lineage is not yet among them.
+   over a lineage is not yet among them.
 
    A conformant implementation *MUST NOT* present per-zone
    reconciliation as reconciliation across a federation.
 
    Converts to spec text when the collective-choice material states the
-   amendment mechanism and Federation's treaty text states cross-zone
+   amendment mechanism and Federation's agreement text states cross-zone
    reconciliation.
 
 11.  Security Considerations

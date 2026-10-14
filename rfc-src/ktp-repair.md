@@ -203,7 +203,7 @@ A zone's repair runs in one of three tiers, declared in advance with the profile
 
 Reserve gone: utilization above the zone's reserve and at or below one. Nothing changes but the heat the index feeds. The zone **MUST NOT** alter any rule of this document in this tier.
 
-Debt growth: utilization above one. The zone **MAY** activate its declared contingency, and only what it declared: an order of reconciliation by residual harm and by criticality, declared in the profile and never chosen per case; verifiers obtained from a federation peer under a treaty, each independent of every party by the same test as any verifier; and a tightening of the admission of consequential acts, so that the zone generates fewer breaches while it repairs. A contingency that is not declared in the profile is not available.
+Debt growth: utilization above one. The zone **MAY** activate its declared contingency, and only what it declared: an order of reconciliation by residual harm and by criticality, declared in the profile and never chosen per case; verifiers obtained from a federation peer under a Federation Agreement, each independent of every party by the same test as any verifier; and a tightening of the admission of consequential acts, so that the zone generates fewer breaches while it repairs. A contingency that is not declared in the profile is not available.
 
 Crisis: utilization at or above two, held over the recovery window. The zone **MAY** declare a repair emergency under {{KTP-EMERGENCY}}, and only under it: its custodians, its activation threshold, its duration, and its stronger controls on amendment apply, and the zone's governing authority **MUST NOT** declare a repair emergency alone.
 
@@ -267,7 +267,7 @@ This document has no IANA actions.
 
 # Limits of This Specification
 
-This document binds re-entry and the rule, not the mechanism of amendment or the federation boundary. {{KTP-CORE}} names both among the limits of the set: the mechanism by which an amendment is made and ratified inside a zone, and the reconciliation of a breach carried into another zone under a treaty.
+This document binds re-entry and the rule, not the mechanism of amendment or the federation boundary. {{KTP-CORE}} names both among the limits of the set: the mechanism by which an amendment is made and ratified inside a zone, and the reconciliation of a breach carried into another zone under a Federation Agreement.
 
 --- back
 

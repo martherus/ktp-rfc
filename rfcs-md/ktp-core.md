@@ -1909,7 +1909,7 @@ lands, the declaration is the whole of the treatment.
 recurring breach pattern puts the rule itself in repair. This specification
 does not state the mechanism by which an amendment is made and ratified inside
 a zone, and does not state how a breach carried into another zone under a
-treaty is reconciled there. The lineage-summed bound on sponsorship under
+Federation Agreement is reconciled there. The lineage-summed bound on sponsorship under
 unreconciled breach that [KTP-REPAIR] specifies is the first of the
 lineage-summed bounds this specification has named as owed; the mass ceiling
 summed over a lineage is not yet among them.
@@ -1918,7 +1918,7 @@ A conformant implementation **MUST NOT** present per-zone reconciliation as
 reconciliation across a federation.
 
 Converts to spec text when the collective-choice material states the amendment
-mechanism and Federation's treaty text states cross-zone reconciliation.
+mechanism and Federation's agreement text states cross-zone reconciliation.
 
 # Security Considerations
 
