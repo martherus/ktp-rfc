@@ -75,27 +75,27 @@ Table of Contents
    4.  The Precondition  . . . . . . . . . . . . . . . . . . . . . .   4
      4.1.  Standing  . . . . . . . . . . . . . . . . . . . . . . . .   4
      4.2.  Entry . . . . . . . . . . . . . . . . . . . . . . . . . .   5
-     4.3.  The Record  . . . . . . . . . . . . . . . . . . . . . . .   5
+     4.3.  The Record  . . . . . . . . . . . . . . . . . . . . . . .   6
      4.4.  The Cost  . . . . . . . . . . . . . . . . . . . . . . . .   6
-     4.5.  Required, Not Invoked . . . . . . . . . . . . . . . . . .   6
+     4.5.  Required, Not Invoked . . . . . . . . . . . . . . . . . .   7
      4.6.  The Rule  . . . . . . . . . . . . . . . . . . . . . . . .   7
-   5.  Barrage and Ambient Breach  . . . . . . . . . . . . . . . . .   7
-     5.1.  Seeking Is an Act . . . . . . . . . . . . . . . . . . . .   7
-     5.2.  Sponsorship Under Unreconciled Breach . . . . . . . . . .   7
+   5.  Barrage and Ambient Breach  . . . . . . . . . . . . . . . . .   8
+     5.1.  Seeking Is an Act . . . . . . . . . . . . . . . . . . . .   8
+     5.2.  Sponsorship Under Unreconciled Breach . . . . . . . . . .   8
      5.3.  Declared Repair Capacity  . . . . . . . . . . . . . . . .   8
-     5.4.  Ambient Breach  . . . . . . . . . . . . . . . . . . . . .   8
-     5.5.  Tiers and Crisis  . . . . . . . . . . . . . . . . . . . .  10
-   6.  Records . . . . . . . . . . . . . . . . . . . . . . . . . . .  11
-   7.  Conformance . . . . . . . . . . . . . . . . . . . . . . . . .  12
-   8.  Security Considerations . . . . . . . . . . . . . . . . . . .  12
-   9.  Privacy Considerations  . . . . . . . . . . . . . . . . . . .  14
-   10. IANA Considerations . . . . . . . . . . . . . . . . . . . . .  14
-   11. Limits of This Specification  . . . . . . . . . . . . . . . .  14
-   12. References  . . . . . . . . . . . . . . . . . . . . . . . . .  14
-     12.1.  Normative References . . . . . . . . . . . . . . . . . .  14
-     12.2.  Informative References . . . . . . . . . . . . . . . . .  15
-   Appendix A.  Acknowledgments  . . . . . . . . . . . . . . . . . .  16
-   Author's Address  . . . . . . . . . . . . . . . . . . . . . . . .  16
+     5.4.  Ambient Breach  . . . . . . . . . . . . . . . . . . . . .   9
+     5.5.  Tiers and Crisis  . . . . . . . . . . . . . . . . . . . .  11
+   6.  Records . . . . . . . . . . . . . . . . . . . . . . . . . . .  12
+   7.  Conformance . . . . . . . . . . . . . . . . . . . . . . . . .  13
+   8.  Security Considerations . . . . . . . . . . . . . . . . . . .  13
+   9.  Privacy Considerations  . . . . . . . . . . . . . . . . . . .  15
+   10. IANA Considerations . . . . . . . . . . . . . . . . . . . . .  15
+   11. Limits of This Specification  . . . . . . . . . . . . . . . .  15
+   12. References  . . . . . . . . . . . . . . . . . . . . . . . . .  15
+     12.1.  Normative References . . . . . . . . . . . . . . . . . .  15
+     12.2.  Informative References . . . . . . . . . . . . . . . . .  16
+   Appendix A.  Acknowledgments  . . . . . . . . . . . . . . . . . .  17
+   Author's Address  . . . . . . . . . . . . . . . . . . . . . . . .  17
 
 1.  Introduction
 
@@ -179,8 +179,9 @@ Internet-Draft                 KTP-REPAIR                   October 2026
    reconciled.
 
    Repair Capacity (μ): The number of reconciliation records the zone's
-   accountable roots can anchor per aggregation window under sustained
-   backlog, declared in the zone's published profile.
+   accountable roots can bring to anchor per aggregation window under
+   sustained backlog, declared in the zone's published profile.  Roots
+   produce and submit records; the Oracle anchors them in the chain.
 
    Open Breach Stock (U): The weighted count of breaches in the zone's
    audit chain for which no reconciliation record is anchored.
@@ -217,7 +218,6 @@ Internet-Draft                 KTP-REPAIR                   October 2026
    NOT* re-enter any tier at or above its tier at the breach, until the
    reconciliation record for that breach is anchored.  The breach
    attaches to the actor's trajectory: an agent spawned from it after
-   the breach carries it, a Sponsorship Bond does not close it, and a
 
 
 
@@ -226,6 +226,7 @@ Perkins                   Expires 16 April 2027                 [Page 4]
 Internet-Draft                 KTP-REPAIR                   October 2026
 
 
+   the breach carries it, a Sponsorship Bond does not close it, and a
    zone that receives the actor measures the breach as its own exposure
    and never as reconciled.  Where the actor no longer exists, the
    obligation to reconcile rests with its lineage at the sponsor and
@@ -241,7 +242,12 @@ Internet-Draft                 KTP-REPAIR                   October 2026
    the cryptographic profile is that of [KTP-CRYPTO].  Where the actor
    is a person, the trajectory is the person's signed acts and nothing
    else, and standing is the zone's measure of the person's acts under
-   the protocol and bears on nothing outside it.
+   the protocol and bears on nothing outside it.  The party who owes
+   reconciliation for an ended actor is the root that held authority
+   over its lineage, as the sponsor and the chain's terminator are
+   declared; a person who directed the actor under a grant without
+   lineage-wide visibility, the authority to refuse, and the power to
+   stop its next act is not by that direction the party.
 
 4.2.  Entry
 
@@ -261,7 +267,20 @@ Internet-Draft                 KTP-REPAIR                   October 2026
    Trust (E_base)): a for-cause claim that does not survive scrutiny is
    misattestation and debits the claimant.  The first two entries are
    hard entries.  A profile-declared entry is a soft entry unless the
-   profile declares it hard.
+   profile declares it hard.  A breach record is contestable under the
+   review route and the response deadlines the set already declares; a
+   correction changes the authoritative evidence and requires a fresh
+   evaluation, and never revives what was superseded, as [KTP-CORE]
+   states for every correction.  A breach record that is wrong is fixed
+   while it can still matter, not after.
+
+
+
+
+Perkins                   Expires 16 April 2027                 [Page 5]
+
+Internet-Draft                 KTP-REPAIR                   October 2026
+
 
 4.3.  The Record
 
@@ -274,22 +293,18 @@ Internet-Draft                 KTP-REPAIR                   October 2026
    The record *MAY* declare the harm unrepairable; declaring it is
    compliant, omitting it is not.  The record carries no account of what
    was said; it states that the parties were present, who confirmed it,
-
-
-
-Perkins                   Expires 16 April 2027                 [Page 5]
-
-Internet-Draft                 KTP-REPAIR                   October 2026
-
-
    and what remains.
 
-   The Independent Party test is the one [KTP-CONFORMANCE] states for
-   conformance claims, applied here to the parties of the record in
-   place of the author and the implementer.  The record type and its
-   fields are specified in Section 6 (Records).  A zone that cannot
-   produce an independent verifier cannot produce a record, and standing
-   does not return; this is the stated result, not a gap.
+   The record also carries the breaching party's acknowledgment of the
+   breach, by the terminator of its chain; a record that states presence
+   and residual harm and no acknowledgment is incomplete and does not
+   close the breach.  The Independent Party test is the one
+   [KTP-CONFORMANCE] states for conformance claims, applied here to the
+   parties of the record in place of the author and the implementer.
+   The record type and its fields are specified in Section 6 (Records).
+   A zone that cannot produce an independent verifier cannot produce a
+   record, and standing does not return; this is the stated result, not
+   a gap.
 
 4.4.  The Cost
 
@@ -315,6 +330,14 @@ Internet-Draft                 KTP-REPAIR                   October 2026
    standing untouched has applied no cost, because the ordinary rail
    restores the tier at the next evaluation.
 
+
+
+
+Perkins                   Expires 16 April 2027                 [Page 6]
+
+Internet-Draft                 KTP-REPAIR                   October 2026
+
+
 4.5.  Required, Not Invoked
 
    Reconciliation is required before re-entry whether or not any party
@@ -326,25 +349,31 @@ Internet-Draft                 KTP-REPAIR                   October 2026
    reconciliation is sought.  Where an affected party declines after
    that route has been followed, the verifier confirms the route was
    followed, the record carries the residual harm as the affected party
-   declared it or, where they declared nothing, as unrepairable, and the
-   record remains open to the affected party to attend and amend at any
-   later time; declining is neither a veto on the record nor a closing
-   of it.  Where no party other than the zone is affected, the zone's
+   declared it or, where they declared nothing, as undeclared and
+   carried as unrepairable, and the record remains open to the affected
+   party to attend and amend at any later time; declining is neither a
+   veto on the record nor a closing of it.  Where no party other than
+   the zone is affected, the zone's governing authority is the affected
+   party, and the verifier *MUST* be independent of it.
 
+   The route is published with the zone's profile.  Who attends depends
+   on who was harmed.  Where the affected party is a person, attendance
+   is voluntary; the review route of [KTP-HUMAN] is unchanged by this
+   document and is not the reconciliation route, and a person is never
+   required to attend.  Where the affected party is an agent, the
+   terminator of its lineage attends in its place and is required to; a
+   terminator who declines after the route has been followed has
+   committed, against its own lineage, the breach that Section 5.1
+   (Seeking Is an Act) names for a lineage that seeks and does not
+   attend.
 
-
-Perkins                   Expires 16 April 2027                 [Page 6]
-
-Internet-Draft                 KTP-REPAIR                   October 2026
-
-
-   governing authority is the affected party, and the verifier *MUST* be
-   independent of it.
-
-   The route is published with the zone's profile.  Where the affected
-   party is a person, the review route of [KTP-HUMAN] is unchanged by
-   this document and is not the reconciliation route; a person is never
-   required to attend.
+   The affected party's answer changes the course and not only the
+   record.  The profile *MUST* declare how a residual harm the affected
+   party declares unrepaired raises Δ above the floor for that breach; a
+   declaration never lowers Δ, and a declaration is not a veto on the
+   record or on re-entry.  A protection that held only when the affected
+   party attended and persuaded would be a courtesy; the floor holds
+   whether or not they attend, and what they declare raises it.
 
 4.6.  The Rule
 
@@ -357,6 +386,14 @@ Internet-Draft                 KTP-REPAIR                   October 2026
    reconciliation records that drove it.  An amendment that cites no
    reconciliation record is not repair, and a recurring pattern that
    amends nothing is not closed.  This specification's own repair runs
+
+
+
+Perkins                   Expires 16 April 2027                 [Page 7]
+
+Internet-Draft                 KTP-REPAIR                   October 2026
+
+
    under its published decision process, which this document cites and
    does not restate.
 
@@ -385,15 +422,6 @@ Internet-Draft                 KTP-REPAIR                   October 2026
    this rule is void, and the agent it would have sponsored has no
    genesis.
 
-
-
-
-
-Perkins                   Expires 16 April 2027                 [Page 7]
-
-Internet-Draft                 KTP-REPAIR                   October 2026
-
-
    This is the only cost a lineage of disposable agents cannot avoid,
    and it is the lineage-summed bound that [KTP-CORE] names as owed
    under its limits.
@@ -401,23 +429,38 @@ Internet-Draft                 KTP-REPAIR                   October 2026
 5.3.  Declared Repair Capacity
 
    A zone *MUST* declare its repair capacity μ in its published profile:
-   the number of reconciliation records its accountable roots can anchor
-   per aggregation window under sustained backlog, by entry class.  The
-   declaration binds the declarer: the audit chain records every
-   anchored record, and a declared capacity the chain does not bear out
-   is a misdeclaration.  The effective repair capacity is the lesser of
-   the declared capacity and the records actually anchored per window
-   over the recovery window while the open breach stock was above zero;
-   a zone that cannot anchor at its declared rate under backlog has its
-   capacity revised to what its own chain demonstrates, and computes
-   ambient breach against that.  A zone that declares no repair capacity
-   has unknown capacity, and unknown capacity is resolved restrictively
-   under [KTP-CORE] Section 6.8 (Undefined Inputs): the zone is treated
-   as saturated for the purposes of Section 5.4 (Ambient Breach) and
-   consequential acts within it are subject to the supervision floor
-   that applies when capacity is not known.  A declared capacity of zero
-   is a declaration that the zone cannot host consequential acts while
-   any breach is unreconciled.
+   the number of reconciliation records its accountable roots can bring
+   to anchor per aggregation window under sustained backlog, by entry
+   class.  The declaration binds the declarer: the audit chain records
+   every anchored record, and a declared capacity the chain does not
+   bear out is a misdeclaration.  The effective repair capacity is the
+   lesser of the declared capacity and the records actually anchored per
+   window over the recovery window while the open breach stock was above
+   zero; a zone that cannot anchor at its declared rate under backlog
+   has its capacity revised to what its own chain demonstrates, and
+   computes ambient breach against that.  A profile *MAY* declare a
+   repairer interval, the time a repairer is given after bringing a
+   hard-entry record to anchor before carrying the next; where it does,
+   a record brought to anchor by a repairer within the interval still
+
+
+
+Perkins                   Expires 16 April 2027                 [Page 8]
+
+Internet-Draft                 KTP-REPAIR                   October 2026
+
+
+   reduces the open breach stock and re-establishes what it re-
+   establishes, and does not count toward demonstrated capacity.  A zone
+   that spends its repairers cannot show the throughput as durable.  A
+   zone that declares no repair capacity has unknown capacity, and
+   unknown capacity is resolved restrictively under [KTP-CORE]
+   Section 6.8 (Undefined Inputs): the zone is treated as saturated for
+   the purposes of Section 5.4 (Ambient Breach) and consequential acts
+   within it are subject to the supervision floor that applies when
+   capacity is not known.  A declared capacity of zero is a declaration
+   that the zone cannot host consequential acts while any breach is
+   unreconciled.
 
    A zone *MUST* also declare its criticality K in the same profile.  K
    is a decision about the asymmetry of harm in that zone and is never
@@ -440,16 +483,6 @@ Internet-Draft                 KTP-REPAIR                   October 2026
    breach carried into another zone under a federation agreement leaves
    it there as exposure and not here as repaired.
 
-
-
-
-
-
-Perkins                   Expires 16 April 2027                 [Page 8]
-
-Internet-Draft                 KTP-REPAIR                   October 2026
-
-
    Ambient breach ρ is the breach arrival over the declared repair
    capacity, Z/μ, taken over the aggregation window.  With the zone's
    declared criticality it is reported as the breach index B = Kρ. The
@@ -465,6 +498,14 @@ Internet-Draft                 KTP-REPAIR                   October 2026
    aggregation window and with the excess above one banked so that a
    lull does not clear it.  The weight the deployment gives it is the
    deployment's declared appetite under the prudence rail.  The signals
+
+
+
+Perkins                   Expires 16 April 2027                 [Page 9]
+
+Internet-Draft                 KTP-REPAIR                   October 2026
+
+
    from which arrival and stock are computed are those the catalogue
    already carries for obligation breaches and relational repair; this
    document introduces no signal.  The Effective Trust Score is
@@ -498,14 +539,6 @@ Internet-Draft                 KTP-REPAIR                   October 2026
    6.  Breaches reproduce: a breach that draws a breach in answer, a
        rule that keeps producing them, and an adversary adapting to the
        backlog each raise the arrival that one breach ultimately causes.
-
-
-
-Perkins                   Expires 16 April 2027                 [Page 9]
-
-Internet-Draft                 KTP-REPAIR                   October 2026
-
-
        A deployment *MUST* measure the reproduction of breaches from its
        own chain, as the records amended to raise residual harm, the
        further breaches of seeking without attending, and the rule-
@@ -521,6 +554,14 @@ Internet-Draft                 KTP-REPAIR                   October 2026
    B = Kρ; the stock as dU/dt = Z − R, where R is the records anchored
    in the window, R ≤ μ, and no term leaves the stock otherwise; the
    banked excess as C(t+Δt) = max(0, C(t) + (B − 1)Δt); with
+
+
+
+Perkins                   Expires 16 April 2027                [Page 10]
+
+Internet-Draft                 KTP-REPAIR                   October 2026
+
+
    reproduction g measured at idle, the queue folds at ρ = 1 − √g and
    the reserve is valid while K > 1/(1 − √g).  The derivation, the
    correction that produced the utilization form, the recovery
@@ -554,21 +595,14 @@ Internet-Draft                 KTP-REPAIR                   October 2026
    zone's governing authority *MUST NOT* declare a repair emergency
    alone.
 
-
-
-
-Perkins                   Expires 16 April 2027                [Page 10]
-
-Internet-Draft                 KTP-REPAIR                   October 2026
-
-
    No tier changes the following, and a declaration that touches any of
    them is non-conformant: the precondition of Section 4 (The
    Precondition); the floor on Δ; the independence of the verifier; that
    nothing leaves the open breach stock but an anchored record; that no
-   actor re-enters on silence; and that nothing is reported per person.
-   A zone that cannot hold these in crisis *MUST* say so in its profile
-   and *MUST NOT* host consequential acts.
+   actor re-enters on silence; that a record remains open to the
+   affected party; and that nothing is reported per person.  A zone that
+   cannot hold these in crisis *MUST* say so in its profile and *MUST
+   NOT* host consequential acts.
 
    A zone leaves a tier only when the recovery predicate holds for the
    recovery window the profile declares: utilization below the tier's
@@ -576,6 +610,14 @@ Internet-Draft                 KTP-REPAIR                   October 2026
    breach stock at or below its declared target, the banked excess at
    zero, and records amended to raise residual harm and the further
    breaches of seeking without attending both below their declared
+
+
+
+Perkins                   Expires 16 April 2027                [Page 11]
+
+Internet-Draft                 KTP-REPAIR                   October 2026
+
+
    rates.  Crossing back below a threshold is not recovery.  A tier that
    was entered produces a rule-repair record under Section 4.6 (The
    Rule) naming what in the profile let it happen; the tier is itself a
@@ -594,8 +636,14 @@ Internet-Draft                 KTP-REPAIR                   October 2026
       the breaching party, the lineage and the sponsor where the actor
       has ended.
 
-   *  residual_harm: the harm that remains, as declared; the value
-      unrepairable is permitted; an absent value invalidates the record.
+   *  acknowledged_by: the terminator of the breaching party's chain,
+      acknowledging the breach; an absent value leaves the breach open.
+
+   *  residual_harm: the harm that remains, as the affected party
+      declared it; the value unrepairable is permitted; the value
+      undeclared is recorded where the affected party declared nothing
+      and is carried as unrepairable; an absent value invalidates the
+      record.
 
    *  verifier: the independent party and its declaration of
       independence at the date of the record.
@@ -610,20 +658,21 @@ Internet-Draft                 KTP-REPAIR                   October 2026
    that recorded the breaching act or the withdrawal; this document adds
    no breach record type.
 
-
-
-
-Perkins                   Expires 16 April 2027                [Page 11]
-
-Internet-Draft                 KTP-REPAIR                   October 2026
-
-
    Where a party to the record is a person, the record is personal data
    under [KTP-PRIVACY], is scoped to the zone, is never exported under a
    federation agreement, and is subject to the lawful disposition
    process [KTP-AUDIT] specifies.  Disposition does not reopen the
    ceiling: a disposed record remains a record for the purpose of the
    precondition by its anchor.
+
+
+
+
+
+Perkins                   Expires 16 April 2027                [Page 12]
+
+Internet-Draft                 KTP-REPAIR                   October 2026
+
 
 7.  Conformance
 
@@ -665,20 +714,21 @@ Internet-Draft                 KTP-REPAIR                   October 2026
       breach is the measuring zone's anchored record; a receiving zone
       measures it as exposure and never as reconciled (Section 4.1).
 
-
-
-
-
-Perkins                   Expires 16 April 2027                [Page 12]
-
-Internet-Draft                 KTP-REPAIR                   October 2026
-
-
    *  Fragment breach.  A release that matches its decision only
       fragment by fragment.  The act is judged whole (Section 4.2).
 
    *  Waiting it out.  Time, restart, fresh proof, new sponsor, the
       actor's ending.  None is reconciliation (Section 4.1).
+
+
+
+
+
+
+Perkins                   Expires 16 April 2027                [Page 13]
+
+Internet-Draft                 KTP-REPAIR                   October 2026
+
 
    *  Manufactured breach.  An adversary induces vetoes to flood the
       repair route.  A Silent Veto is not a breach; the first entry
@@ -719,21 +769,22 @@ Internet-Draft                 KTP-REPAIR                   October 2026
       breadth, not volume; the index never vetoes and feeds heat through
       a declared ceiling (Section 5.4).
 
-
-
-
-
-
-
-Perkins                   Expires 16 April 2027                [Page 13]
-
-Internet-Draft                 KTP-REPAIR                   October 2026
-
-
    *  Collapse by exhaustion.  Declared capacity stays on paper while
       the roots who anchor wear out.  Effective capacity is the lesser
       of declared and demonstrated, so the zone's own chain revises the
       denominator before the index lies (Section 5.3).
+
+
+
+
+
+
+
+
+Perkins                   Expires 16 April 2027                [Page 14]
+
+Internet-Draft                 KTP-REPAIR                   October 2026
+
 
    *  The crisis that drops the rules.  A zone in debt closes breaches
       by policy, lowers Δ, drains the stock.  No tier may change the
@@ -753,7 +804,9 @@ Internet-Draft                 KTP-REPAIR                   October 2026
    required to attend.  A person's acts contribute to breach arrival and
    stock as acts, and ambient breach is never reported per person.  A
    person's reconciliation record is zone-scoped personal data under
-   [KTP-PRIVACY] and [KTP-AUDIT].  Nothing in this document makes a
+   [KTP-PRIVACY] and [KTP-AUDIT], and is subject to the Soul constraints
+   of the zone, consent state and sovereignty included, which no measure
+   in this document overrides.  Nothing in this document makes a
    person's standing a score outside the protocol.
 
 10.  IANA Considerations
@@ -777,18 +830,17 @@ Internet-Draft                 KTP-REPAIR                   October 2026
               DOI 10.17487/RFC2119, March 1997,
               <https://www.rfc-editor.org/info/rfc2119>.
 
-
-
-
-
-Perkins                   Expires 16 April 2027                [Page 14]
-
-Internet-Draft                 KTP-REPAIR                   October 2026
-
-
    [RFC8174]  Leiba, B., "Ambiguity of Uppercase vs Lowercase in RFC
               2119 Key Words", BCP 14, RFC 8174, DOI 10.17487/RFC8174,
               May 2017, <https://www.rfc-editor.org/info/rfc8174>.
+
+
+
+
+Perkins                   Expires 16 April 2027                [Page 15]
+
+Internet-Draft                 KTP-REPAIR                   October 2026
+
 
    [KTP-CORE] Perkins, C., "Kinetic Trust Protocol - Core Protocol",
               n.d..
@@ -833,18 +885,18 @@ Internet-Draft                 KTP-REPAIR                   October 2026
               Perkins, C., "Kinetic Trust Protocol - Blue Zone
               Discovery", n.d..
 
-
-
-
-
-Perkins                   Expires 16 April 2027                [Page 15]
-
-Internet-Draft                 KTP-REPAIR                   October 2026
-
-
    [KTP-CRYPTO]
               Perkins, C., "Kinetic Trust Protocol - Cryptographic
               Requirements", n.d..
+
+
+
+
+
+Perkins                   Expires 16 April 2027                [Page 16]
+
+Internet-Draft                 KTP-REPAIR                   October 2026
+
 
    [KTP-EMERGENCY]
               Perkins, C., "Kinetic Trust Protocol - Emergency
@@ -893,4 +945,8 @@ Author's Address
 
 
 
-Perkins                   Expires 16 April 2027                [Page 16]
+
+
+
+
+Perkins                   Expires 16 April 2027                [Page 17]

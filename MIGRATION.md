@@ -113,6 +113,10 @@ It declares its three repair tiers with the contingency each permits, caps one
 lineage's share of arrival, computes capacity as the lesser of declared and
 demonstrated, leaves a tier only by the recovery predicate, and declares a
 repair emergency only under the emergency specification's custodians.
+It declares how an affected party's declaration of unrepaired harm raises Δ,
+requires the breaching party's acknowledgment on every record, and treats a
+record brought to anchor within the declared repairer interval as not
+demonstrating capacity.
 
 An implementation of Relational's repair process that began at "parties agree
 repair is needed" changes that phase: the breaching party seeks, the affected

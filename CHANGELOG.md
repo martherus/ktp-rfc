@@ -69,8 +69,18 @@ than they can be repaired.
   per-person reporting. One lineage's share of arrival is capped; effective
   capacity is the lesser of declared and demonstrated; a tier is left only by
   the recovery predicate held over the recovery window.
+  Second commit on the proposal, after review against the set's own ethics:
+  who attends depends on who was harmed (a person voluntarily, an agent's
+  terminator required); the affected party's declaration of unrepaired harm
+  raises Δ by the profile's declared amount and never lowers it; the record
+  carries the breaching party's acknowledgment; a breach record is contestable
+  under the declared review route; the party who owes for an ended actor is the
+  root that held authority, never an operator without the power to stop; a
+  repairer interval binds demonstrated capacity, not the breacher; the record
+  stays open to the affected party in every tier; the chain anchors and the
+  roots produce; residual harm reads undeclared where nothing was declared.
 - `specifications/conformance/breach-reconciliation-v1.json` publishes
-  thirty-five boundary cases, including theatre, holdout, the hollow return,
+  forty-one boundary cases, including theatre, holdout, the hollow return,
   the barrage, the Silent Veto storm, the crisis landmark, a criticality
   invalid against measured reproduction, one lineage capped in arrival,
   capacity revised to demonstrated, and the tiers and what no tier may change. They define no formula.

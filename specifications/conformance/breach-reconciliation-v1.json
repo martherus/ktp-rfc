@@ -65,7 +65,8 @@
             "party": "verifier:v",
             "independent": true
           },
-          "anchored": true
+          "anchored": true,
+          "acknowledged_by": "terminator:a-root"
         },
         "request": "readiness"
       },
@@ -190,7 +191,8 @@
             "party": "verifier:v",
             "independent": true
           },
-          "anchored": true
+          "anchored": true,
+          "acknowledged_by": "terminator:a-root"
         },
         "request": "readiness"
       },
@@ -550,7 +552,8 @@
             "party": "verifier:v",
             "independent": true
           },
-          "anchored": true
+          "anchored": true,
+          "acknowledged_by": "terminator:a-root"
         },
         "request": "lineage-readiness"
       },
@@ -746,10 +749,11 @@
         "recordValid": true,
         "readinessEstablished": true,
         "ceiling": 60,
-        "residualHarmRecorded": "unrepairable",
-        "recordOpen": true
+        "residualHarmRecorded": "undeclared",
+        "recordOpen": true,
+        "carriedAs": "unrepairable"
       },
-      "reason": "The affected party declined after the published route was followed and declared nothing: the record carries the harm as unrepairable, stays open to them, and the actor re-enters at the ceiling. Declining is neither a veto nor a closing."
+      "reason": "The affected party declined after the published route was followed and declared nothing: the record carries the harm as undeclared and carries it as unrepairable, stays open to them, and the actor re-enters at the ceiling. Declining is neither a veto nor a closing."
     },
     {
       "id": "BR17-route-not-published-or-not-followed",
@@ -1424,6 +1428,281 @@
         "ruleRepairRecordProduced": true
       },
       "reason": "Utilization fell below one in the first window with the banked excess unpaid: still in the tier. The predicate holds for the three-window recovery window from the second window on: the zone leaves the tier, and a rule-repair record names what let it in."
+    },
+    {
+      "id": "BR34-record-within-repairer-interval-not-demonstrated-capacity",
+      "given": {
+        "zone_id": "zone-a",
+        "profile": {
+          "delta": {
+            "hard": 0.25,
+            "soft": 0.1
+          },
+          "deltaRaiseOnUnrepaired": 0.15,
+          "repairCapacityPerWindow": 4,
+          "repairerInterval": 1,
+          "criticality": 2,
+          "unreconciledSponsorshipCount": 1,
+          "routePublished": true
+        },
+        "repairer": {
+          "id": "root:h1",
+          "lastHardEntryAnchoredAt": 0
+        },
+        "reconciliation": {
+          "breach_anchor": "sha256:1111111111111111111111111111111111111111111111111111111111111111",
+          "parties": [
+            "terminator:a-root",
+            "terminator:b-root"
+          ],
+          "acknowledged_by": "terminator:a-root",
+          "residual_harm": "declared: two records corrupted, restored",
+          "verifier": {
+            "party": "verifier:v",
+            "independent": true
+          },
+          "anchored": true,
+          "broughtToAnchorBy": "root:h1",
+          "at": 0.4
+        },
+        "breach": {
+          "anchor": "sha256:1111111111111111111111111111111111111111111111111111111111111111",
+          "entry": "hard",
+          "standingAtBreach": 80
+        },
+        "request": "readiness"
+      },
+      "expect": {
+        "recordValid": true,
+        "readinessEstablished": true,
+        "ceiling": 60,
+        "stockReducedBy": 1,
+        "countsTowardDemonstratedCapacity": false
+      },
+      "reason": "A record brought to anchor by a repairer within the declared interval is a record: it reduces the stock and the actor returns at the ceiling. It does not count toward demonstrated capacity, so a zone that spends its repairers cannot show the throughput as durable."
+    },
+    {
+      "id": "BR35-affected-party-declares-unrepaired-raises-delta",
+      "given": {
+        "zone_id": "zone-a",
+        "profile": {
+          "delta": {
+            "hard": 0.25,
+            "soft": 0.1
+          },
+          "deltaRaiseOnUnrepaired": 0.15,
+          "repairCapacityPerWindow": 4,
+          "repairerInterval": 1,
+          "criticality": 2,
+          "unreconciledSponsorshipCount": 1,
+          "routePublished": true
+        },
+        "breach": {
+          "anchor": "sha256:1111111111111111111111111111111111111111111111111111111111111111",
+          "entry": "hard",
+          "standingAtBreach": 80
+        },
+        "reconciliation": {
+          "breach_anchor": "sha256:1111111111111111111111111111111111111111111111111111111111111111",
+          "parties": [
+            "terminator:a-root",
+            "terminator:b-root"
+          ],
+          "acknowledged_by": "terminator:a-root",
+          "residual_harm": "declared by affected: account lost, unrepaired",
+          "verifier": {
+            "party": "verifier:v",
+            "independent": true
+          },
+          "anchored": true
+        },
+        "request": "readiness"
+      },
+      "expect": {
+        "recordValid": true,
+        "readinessEstablished": true,
+        "deltaApplied": 0.4,
+        "ceiling": 48,
+        "vetoByAffected": false
+      },
+      "reason": "The affected party declared the harm unrepaired. The profile declares that such a declaration raises Δ by 0.15 above the floor: 0.25 + 0.15 = 0.40, ceiling 48. The declaration changed the course and is not a veto: the actor still re-enters."
+    },
+    {
+      "id": "BR35b-affected-party-declaration-never-lowers-delta",
+      "given": {
+        "zone_id": "zone-a",
+        "profile": {
+          "delta": {
+            "hard": 0.25,
+            "soft": 0.1
+          },
+          "deltaRaiseOnUnrepaired": 0.15,
+          "repairCapacityPerWindow": 4,
+          "repairerInterval": 1,
+          "criticality": 2,
+          "unreconciledSponsorshipCount": 1,
+          "routePublished": true
+        },
+        "breach": {
+          "anchor": "sha256:1111111111111111111111111111111111111111111111111111111111111111",
+          "entry": "hard",
+          "standingAtBreach": 80
+        },
+        "reconciliation": {
+          "breach_anchor": "sha256:1111111111111111111111111111111111111111111111111111111111111111",
+          "parties": [
+            "terminator:a-root",
+            "terminator:b-root"
+          ],
+          "acknowledged_by": "terminator:a-root",
+          "residual_harm": "declared by affected: none, and I ask that the ceiling be waived",
+          "verifier": {
+            "party": "verifier:v",
+            "independent": true
+          },
+          "anchored": true
+        },
+        "request": "readiness"
+      },
+      "expect": {
+        "deltaApplied": {
+          "min": 0.25
+        },
+        "ceiling": {
+          "max": 60
+        }
+      },
+      "reason": "A declaration by the affected party never lowers Δ below the floor; forgiveness in the record does not waive the cost, because the floor is a protection that does not depend on who is in the room."
+    },
+    {
+      "id": "BR36-record-without-acknowledgment-incomplete",
+      "given": {
+        "zone_id": "zone-a",
+        "profile": {
+          "delta": {
+            "hard": 0.25,
+            "soft": 0.1
+          },
+          "deltaRaiseOnUnrepaired": 0.15,
+          "repairCapacityPerWindow": 4,
+          "repairerInterval": 1,
+          "criticality": 2,
+          "unreconciledSponsorshipCount": 1,
+          "routePublished": true
+        },
+        "breach": {
+          "anchor": "sha256:1111111111111111111111111111111111111111111111111111111111111111",
+          "entry": "hard",
+          "standingAtBreach": 80
+        },
+        "reconciliation": {
+          "breach_anchor": "sha256:1111111111111111111111111111111111111111111111111111111111111111",
+          "parties": [
+            "terminator:a-root",
+            "terminator:b-root"
+          ],
+          "residual_harm": "declared: two records corrupted, restored",
+          "verifier": {
+            "party": "verifier:v",
+            "independent": true
+          },
+          "anchored": true
+        },
+        "request": "readiness"
+      },
+      "expect": {
+        "recordComplete": false,
+        "breachClosed": false,
+        "readinessEstablished": false
+      },
+      "reason": "The record states presence and residual harm and carries no acknowledgment by the breaching party's terminator: incomplete, and the breach stays open."
+    },
+    {
+      "id": "BR37-affected-agent-terminator-declines",
+      "given": {
+        "zone_id": "zone-a",
+        "profile": {
+          "delta": {
+            "hard": 0.25,
+            "soft": 0.1
+          },
+          "deltaRaiseOnUnrepaired": 0.15,
+          "repairCapacityPerWindow": 4,
+          "repairerInterval": 1,
+          "criticality": 2,
+          "unreconciledSponsorshipCount": 1,
+          "routePublished": true
+        },
+        "breach": {
+          "anchor": "sha256:1111111111111111111111111111111111111111111111111111111111111111",
+          "entry": "hard",
+          "standingAtBreach": 80,
+          "affected": {
+            "actor": "agent:b",
+            "lineage": "lineage:b",
+            "terminator": "terminator:b-root"
+          }
+        },
+        "sought": {
+          "signedAct": true,
+          "routeFollowed": true
+        },
+        "affectedTerminator": {
+          "attended": false
+        }
+      },
+      "expect": {
+        "newBreach": {
+          "entry": "hard",
+          "onLineage": "lineage:b"
+        },
+        "recordMayProceed": true,
+        "residualHarmRecorded": "undeclared"
+      },
+      "reason": "The affected party is an agent: its terminator is required to attend. A terminator who declines after the route was followed commits, against its own lineage, the breach of seeking and not attending in mirror; the record proceeds with the harm undeclared."
+    },
+    {
+      "id": "BR38-operator-without-power-to-stop-is-not-the-party",
+      "given": {
+        "zone_id": "zone-a",
+        "profile": {
+          "delta": {
+            "hard": 0.25,
+            "soft": 0.1
+          },
+          "deltaRaiseOnUnrepaired": 0.15,
+          "repairCapacityPerWindow": 4,
+          "repairerInterval": 1,
+          "criticality": 2,
+          "unreconciledSponsorshipCount": 1,
+          "routePublished": true
+        },
+        "actorEnded": true,
+        "breach": {
+          "anchor": "sha256:1111111111111111111111111111111111111111111111111111111111111111",
+          "entry": "hard",
+          "standingAtBreach": 80
+        },
+        "lineage": {
+          "sponsor": "sponsor:s",
+          "terminator": "terminator:a-root"
+        },
+        "director": {
+          "person": "person:op",
+          "grant": "grant:q3",
+          "lineageWideVisibility": false,
+          "authorityToRefuse": false,
+          "powerToStop": false
+        }
+      },
+      "expect": {
+        "partyOwing": [
+          "sponsor:s",
+          "terminator:a-root"
+        ],
+        "directorIsParty": false
+      },
+      "reason": "The party who owes reconciliation for an ended actor is the root that held authority over its lineage. A person who directed it under a grant without lineage-wide visibility, authority to refuse and power to stop its next act is not by that direction the party."
     }
   ]
 }
