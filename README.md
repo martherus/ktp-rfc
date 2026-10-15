@@ -96,11 +96,11 @@ weighted inputs, named by their JSON keys:
 
 | Key | What it carries |
 |---|---|
-| `evidence_density` | Weight and density of presence in the environment |
+| `evidence_density` | Weight of presence in the environment: occupancy, electromagnetic interference, spatial congestion |
 | `trust_trend` | Rate and direction of change in standing |
 | `adversarial_pressure` | Measured adversarial stress |
 | `moment_criticality` | Criticality of the moment or phase — cutovers, deadlines, protected periods |
-| `update_resistance` | How hard the trust value is to move: the depth of evidence behind current standing |
+| `update_resistance` | Topological importance of the asset: how hard it is to move or stop, and how much depends on it |
 | `attestation_coverage` | How much of the agent's activity is witnessed and attestable |
 
 Plus the **Soul veto** — `soul` is not a seventh weighted input. It is
