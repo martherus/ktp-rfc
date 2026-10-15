@@ -216,6 +216,9 @@ Human eligibility and erasure accounting use `/specs/schemas/human-eligibility-v
 encrypted evidence storage uses `/specs/schemas/privacy-v1/`.
 The original v2 transaction and deployment schemas are preserved separately for
 archive interpretation. No published release or tag is changed by this draft.
+Between releases, `main` may carry material that no tag yet contains; if you
+build against it, pin the exact commit and say so, as [`VERSIONING.md`](VERSIONING.md)
+asks. A commit is a fixed point; `main` is not.
 
 `trust-proof` · `risk-factors` · `soul-constraint` · `sensor-config` ·
 `sponsorship-bond` · `transaction-record` · `transaction-record-legacy-v2` ·
