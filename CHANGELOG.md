@@ -45,13 +45,13 @@ a resident sponsor.
   direction, applied at ingress to the attested Base Trust; the receiver
   computes its own Risk Factor; a receiver MUST NOT apply a factor it did not
   sign or a factor above one; a class ceiling and a signed factor are one
-  factor; policies lower and never raise. The decay, floor and behaviour
+  factor; policies lower and never raise. The decay, floor and behavior
   modifier calculations become examples of such policies.
 - Federation gains Section 5.4 (Cross-Zone Sponsorship): a sponsor MAY vouch
   into another zone where the agreement provides; the reserve is held at home
   and the bond is void if home has not recorded it; the receiver takes the
   collateral at its own measure; a sponsor not admissible at that measure MUST
-  NOT sponsor; the receiver withdraws and home penalises, independently; the
+  NOT sponsor; the receiver withdraws and home penalizes, independently; the
   sponsor's breach records cross as exposure, and a root above its unreconciled
   count anywhere MUST NOT open a bond anywhere.
 - Federation gains Section 6.5 (Attestations as Evidence): a record crosses, a
