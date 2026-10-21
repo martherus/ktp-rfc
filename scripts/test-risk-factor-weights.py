@@ -104,6 +104,20 @@ SUM_CASES = [
 ]
 
 
+if len(FACTORS) == 5:
+    SUM_CASES = [
+        ("embedded-example", BASE_WEIGHTS, True),
+        ("skewed-valid", [0.96, 0.01, 0.01, 0.01, 0.01], True),
+        ("decimal-valid", [0.1, 0.2, 0.3, 0.15, 0.25], True),
+        ("original-small-total", [0.01] * 5, False),
+        ("all-maximum", [1] * 5, False),
+        ("near-unit-deficit", [math.nextafter(BASE_WEIGHTS[0], 0)] + BASE_WEIGHTS[1:], False),
+        ("near-unit-excess", [math.nextafter(BASE_WEIGHTS[0], math.inf)] + BASE_WEIGHTS[1:], False),
+        ("five-exact-fifths", [0.2] * 5, True),
+        ("rounded-thirds", [0.3333333333333333] * 3 + [0.0000000000000001] * 2, False),
+    ]
+
+
 def malformed_profiles():
     for value in (None, [], "profile", 1, True):
         yield f"root-{type(value).__name__}", value
@@ -215,7 +229,7 @@ class RiskFactorWeightTests(unittest.TestCase):
                                   "DECLARATIONS INVALID", result.stdout)
             # Exercise exponent overflow through the CLI's existing parser.
             path.write_text(json.dumps(profile_with(BASE_WEIGHTS)).replace(
-                '"weight": 0.25', '"weight": 1e400', 1))
+                f'"weight": {BASE_WEIGHTS[0]}', '"weight": 1e400', 1))
             result = subprocess.run(
                 [sys.executable, str(CHECKER_PATH), "--profile", str(path)],
                 capture_output=True, text=True, check=False)
