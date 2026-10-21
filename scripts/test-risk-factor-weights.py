@@ -1,11 +1,11 @@
 #!/usr/bin/env python3
-"""Regression gate for the five deployment Risk Factor weights (F04).
+"""Regression gate for the six deployment Risk Factor weights (F04).
 
 Runs the real declaration checker, its CLI, and the Draft 2020-12 schema.
 Install jsonschema==4.26.0, then run:
     python3 scripts/test-risk-factor-weights.py
 
-The schema checks each weight and the five-factor shape. The declaration
+The schema checks each weight and the six-factor shape. The declaration
 checker additionally requires the exact sum of Fraction(str(weight)) to be
 one, using the numeric values produced by the existing JSON parser. These
 tests do not claim to preserve original JSON number tokens. The arithmetic
@@ -86,21 +86,36 @@ def published_profiles():
     return profiles
 
 
-# name, all five weights, checker valid. All values in this table are strict
+# name, all six weights, checker valid. All values in this table are strict
 # finite JSON numbers in (0, 1], so the schema intentionally accepts them.
 SUM_CASES = [
     ("embedded-example", BASE_WEIGHTS, True),
-    ("skewed-valid", [0.96, 0.01, 0.01, 0.01, 0.01], True),
-    ("decimal-valid", [0.1, 0.2, 0.3, 0.25, 0.15], True),
-    ("original-small-total", [0.01] * 5, False),
-    ("all-maximum", [1] * 5, False),
+    ("skewed-valid", [0.95, 0.01, 0.01, 0.01, 0.01, 0.01], True),
+    ("decimal-valid", [0.1, 0.2, 0.3, 0.15, 0.15, 0.1], True),
+    ("original-small-total", [0.01] * 6, False),
+    ("all-maximum", [1] * 6, False),
     ("near-unit-deficit", [math.nextafter(BASE_WEIGHTS[0], 0)]
      + BASE_WEIGHTS[1:], False),
     ("near-unit-excess", [math.nextafter(BASE_WEIGHTS[0], math.inf)]
      + BASE_WEIGHTS[1:], False),
-    ("five-rounded-fifths", [0.2] * 5, True),
-    ("five-rounded-thirds", [0.3333333333333333] * 3 + [0.0000000000000001] * 2, False),
+    ("six-rounded-sixths", [0.16666666666666666] * 6, False),
+    ("balanced-rounded-sixths", [0.16666666666666666] * 5
+     + [0.1666666666666667], True),
 ]
+
+
+if len(FACTORS) == 5:
+    SUM_CASES = [
+        ("embedded-example", BASE_WEIGHTS, True),
+        ("skewed-valid", [0.96, 0.01, 0.01, 0.01, 0.01], True),
+        ("decimal-valid", [0.1, 0.2, 0.3, 0.15, 0.25], True),
+        ("original-small-total", [0.01] * 5, False),
+        ("all-maximum", [1] * 5, False),
+        ("near-unit-deficit", [math.nextafter(BASE_WEIGHTS[0], 0)] + BASE_WEIGHTS[1:], False),
+        ("near-unit-excess", [math.nextafter(BASE_WEIGHTS[0], math.inf)] + BASE_WEIGHTS[1:], False),
+        ("five-exact-fifths", [0.2] * 5, True),
+        ("rounded-thirds", [0.3333333333333333] * 3 + [0.0000000000000001] * 2, False),
+    ]
 
 
 def malformed_profiles():
