@@ -1,3 +1,82 @@
+# Changelog
+
+What changed between releases of the KTP RFC series, and what forced each
+change.
+
+This file records **normative** changes: an entry is here if a conformant
+implementation of the previous release stops being conformant, or if new
+required behavior appears. Editorial work — reflow, link repair, prose that
+changes no requirement — is not listed.
+
+Every entry names the finding behind it. A change with no finding behind it is
+a preference, and preferences do not belong in a normative set. Three findings
+account for most of v2.0.0, and they are named throughout:
+
+- **the reachability matrix** — `109-90-reachability.py`, which checks every
+  numeric gate in the set against every other at four values of `R`. It was
+  written because three arithmetic defects had already been found by hand, one
+  at a time.
+- **the falsification program** — the comparison corpus that asked what the
+  specification would have to say to be wrong about something, and produced
+  obligations the set had not discharged.
+- **the corpus audit** — reading the files. Most of what follows was found by
+  one document being read next to another that contradicted it.
+
+Read alongside [`VERSIONING.md`](VERSIONING.md) (what MAJOR, MINOR and PATCH
+mean here, and why a published tag is never moved),
+[`SECURITY-NOTES.md`](SECURITY-NOTES.md) (defects in a published version,
+recorded when found rather than held for the release that corrects them), and
+[`MIGRATION.md`](MIGRATION.md) (what a v1.0.1 implementer has to change).
+
+---
+
+## Unreleased — capacity, risk, emergency authorization, Oracle consensus, trajectory signatures, readiness, human eligibility, and persons as subjects
+
+### A person is a subject; the External Root is a person
+
+**Finding:** the accountability chain behind every agent ended at an
+instrument nobody stood behind. Core said the chain terminates at a named
+human, a legal entity or an attestation, then forbade that human a score or a
+trajectory; the threat model's SR-011 required administrators to have Trust
+Scores and be subject to A ≤ E. Both could not hold. Proposed in #162.
+
+- Core: a person is a subject of the specification, as an account in a zone.
+  A person's trajectory is the ledger of acts they signed under the protocol
+  and nothing else. A person's E_base is composed under Section 5.1 from
+  those acts and the standing of the terminator behind them, under the same
+  shares and ceilings as any subject; generation, lineage stage, mass
+  ceilings and mitosis do not apply and are not defaulted. Proof of
+  Resilience is earned only by acts signed under stress.
+- Core: a person's Trust Score is the zone's measure of that account. It
+  bears on what the person may do in that zone and on nothing else, must not
+  be used as a general score or rank outside the protocol, and must not be
+  presented as a property of the person. Standing is never a prerequisite
+  for explanation, correction or review.
+- Core: the chain behind an agent ends at a person, and behind the person at
+  an employer, a licensing body or a board. Persons stand behind the
+  attestation branch of the root instrument; that branch is not locked to any
+  lineage stage.
+- Conformance: `specifications/conformance/person-standing-v1.json`, twelve
+  vectors fixing what enters a person's standing, where it bears, and how it
+  crosses a zone boundary. They do not define a formula for E_base or R.
+- Zones and Federation: a person's standing crosses a federation link only as
+  the agreement provides, through the receiving zone's directional trust
+  factor and zone-mass ceiling, from zero up to that ceiling. Nothing
+  transfers where no agreement exists.
+- Identity, Human, and the human-eligibility contract: the sentences that
+  forbade a person a score are rewritten to the above. Eligibility and
+  capacity remain separate requirements beside standing. The behavioral-data
+  rules in Privacy, including BEHAVIOR-002, are untouched: signed acts are
+  not behavioral data.
+- Vectors for the four behaviors named in the proposal are not included yet.
+
+This alters sentences that reached `main` in the consolidation block recorded
+as D-010, after that block's approval. A conformant implementation that treats
+the External Root as an instrument with nobody behind it, or that implements
+the earlier six-term human score, stops conforming, so this requires a MAJOR
+release under `VERSIONING.md`. It remains unreleased; published tags are
+unchanged.
+
 ## Unreleased — capacity, risk, emergency authorization, Oracle consensus, trajectory signatures, readiness, and human eligibility, and the demand-side criticality input
 
 ### `moment_criticality` leaves the Risk Factor
