@@ -458,16 +458,12 @@ not validation of friction measurement or a runtime conformance claim.
 
 Weight multipliers for Resilience Score:
 
-~~~
-+----------+--------+-----------------------------------+
-| Category | Weight | Rationale                         |
-+----------+--------+-----------------------------------+
-| ELEVATED | 1.0x   | Baseline for counted attestations |
-| HIGH     | 2.0x   | Notable achievement               |
-| SEVERE   | 5.0x   | Significant achievement           |
-| CRISIS   | 10.0x  | Exceptional achievement           |
-+----------+--------+-----------------------------------+
-~~~
+| Category | Weight | Rationale |
+|----------|--------|-----------|
+| ELEVATED | 1.0x | Baseline for counted attestations |
+| HIGH | 2.0x | Notable achievement |
+| SEVERE | 5.0x | Significant achievement |
+| CRISIS | 10.0x | Exceptional achievement |
 
 An agent that successfully completes one action during CRISIS conditions earns the same Resilience Score as an agent that completes ten actions during ELEVATED conditions.
 
