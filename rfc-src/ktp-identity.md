@@ -1040,7 +1040,7 @@ before interpreting segment escapes; an encoded colon is segment data, never a
 separator. Do not recursively decode an escaped percent sign.
 
 The first sponsored segment is sponsor_ref, an opaque reference. It is NOT a
-complete sponsor Agent URI and MUST NOT establish sponsorship. No component MAY
+complete sponsor Agent URI and MUST NOT establish sponsorship. A component MUST NOT
 infer or look up authority by treating sponsor_ref as the sponsor identity.
 The second segment is agent_name; the last is unique_id. The corresponding
 segments in independent and guarantor forms are lineage_name/name and unique_id.
