@@ -2073,15 +2073,15 @@ Normalization: evidence_density = (1800 - 400) / 1600 = 0.875 trust_trend = 92 /
 
 Domain weights (Stadium Network profile, Section 6.4): evidence_density=0.29, trust_trend=0.29, adversarial_pressure=0.24, update_resistance=0.12, attestation_coverage=0.06
 
-Risk calculation: R = (0.29 * 0.875) + (0.29 * 0.920) + (0.24 * 0.020) + (0.12 * 0.100) + (0.06 * 0.040) R = 0.254 + 0.267 + 0.005 + 0.012 + 0.002 R = 0.540
+Risk calculation: R = (0.29 * 0.875) + (0.29 * 0.920) + (0.24 * 0.020) + (0.12 * 0.100) + (0.06 * 0.040) R = 0.25375 + 0.26680 + 0.00480 + 0.01200 + 0.00240 R = 0.53975
 
 Agent E_base: 95 (highly trusted deployment agent)
 
-E_trust calculation: E_trust = 95 * (1 - 0.540) = 95 * 0.460 = 43.70
+E_trust calculation: E_trust = 95 * (1 - 0.53975) = 95 * 0.46025 = 43.72375
 
 Action requested: Deploy code (A = 50)
 
-Zeroth Law evaluation: A <= E_trust ? 50 <= 43.70 ? FALSE
+Zeroth Law evaluation: A <= E_trust ? 50 <= 43.72375 ? FALSE
 
 Result: Silent Veto. Deployment denied.
 
@@ -2093,15 +2093,15 @@ Same agent, but during a maintenance window:
 
 Sensor values: CO2: 450 ppm Link saturation: 12% WAF blocks: 5/min Time to event: 48 hours Dependency count: 50 VIP count: 0
 
-Normalization: evidence_density = (450 - 400) / 1600 = 0.031 trust_trend = 12 / 100 = 0.120 adversarial_pressure = 5 / 10000 = 0.001 update_resistance = 50 / 500 = 0.100 attestation_coverage = 0 / 50 = 0.000
+Normalization: evidence_density = (450 - 400) / 1600 = 0.03125 trust_trend = 12 / 100 = 0.120 adversarial_pressure = 5 / 10000 = 0.0005 update_resistance = 50 / 500 = 0.100 attestation_coverage = 0 / 50 = 0.000
 
-Risk calculation: R = (0.29 * 0.031) + (0.29 * 0.120) + (0.24 * 0.001) + (0.12 * 0.100) + (0.06 * 0.000) R = 0.009 + 0.035 + 0.000 + 0.012 + 0.000 R = 0.056
+Risk calculation: R = (0.29 * 0.03125) + (0.29 * 0.120) + (0.24 * 0.0005) + (0.12 * 0.100) + (0.06 * 0.000) R = 0.0090625 + 0.0348000 + 0.0001200 + 0.0120000 + 0.0000000 R = 0.0559825
 
-E_trust calculation: E_trust = 95 * (1 - 0.056) = 95 * 0.944 = 89.68
+E_trust calculation: E_trust = 95 * (1 - 0.0559825) = 95 * 0.9440175 = 89.6816625
 
 Action requested: Deploy code (A = 50)
 
-Zeroth Law evaluation: A <= E_trust ? 50 <= 89.68 ? TRUE
+Zeroth Law evaluation: A <= E_trust ? 50 <= 89.6816625 ? TRUE
 
 Result: Action permitted. The maintenance window is not a reason to permit: it does not lower R, and a demand input may only raise A.
 

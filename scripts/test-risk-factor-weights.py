@@ -12,7 +12,8 @@ tests do not claim to preserve original JSON number tokens. The arithmetic
 tests check the published weighted-risk formula, not a runtime authorizer.
 
 It also pins the v3 identifiers of the Risk Factors and Trust Proof schemas
-and the byte-preserved v2 files their v2 identifiers still name.
+and the byte-preserved v2 files their v2 identifiers still name, and checks
+that the demand-input vectors' R and E_trust are exact on their own inputs.
 """
 
 import copy
@@ -326,6 +327,35 @@ class RiskFactorsSchemaIdentityTests(unittest.TestCase):
                 ref = self.risk_factors_ref(name)
                 self.assertEqual(shape == "five", self.accepts(ref, self.five))
                 self.assertEqual(shape == "six", self.accepts(ref, self.six))
+
+
+
+class DemandVectorArithmeticTests(unittest.TestCase):
+    """The demand-input vectors that show R and E_trust carry exactly what
+    Core's formulas give on their own inputs, with nothing rounded."""
+
+    @classmethod
+    def setUpClass(cls):
+        path = ROOT / "specifications/conformance/demand-input-v1.json"
+        suite = json.loads(path.read_text(), parse_float=Fraction)
+        cls.vectors = {vector["id"].split("-")[0]: vector
+                       for vector in suite["vectors"]}
+
+    def test_kickoff_risk_and_trust_are_exact(self):
+        given = self.vectors["DI10"]["given"]
+        expect = self.vectors["DI10"]["expect"]
+        risk = sum(given["weights"][name] * given["normalized_inputs"][name]
+                   for name in FACTORS)
+        self.assertEqual(sorted(FACTORS), sorted(given["weights"]))
+        self.assertEqual(risk, expect["R"])
+        self.assertEqual(given["E_base"] * (1 - risk), expect["E_trust"])
+
+    def test_declared_supplier_case_matches_the_kickoff(self):
+        given = self.vectors["DI01"]["given"]
+        expect = self.vectors["DI01"]["expect"]
+        self.assertEqual(self.vectors["DI10"]["expect"]["R"], given["R"])
+        self.assertEqual(given["R"], expect["R"])
+        self.assertEqual(given["E_base"] * (1 - given["R"]), expect["E_trust"])
 
 
 if __name__ == "__main__":

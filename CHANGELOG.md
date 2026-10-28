@@ -43,6 +43,11 @@ the number that loosened the constraint. Proposed in #161.
   the most critical moment; six-factor and non-summing profiles are
   invalid; the renormalization rule reproduces the Stadium profile; the
   kickoff example still vetoes.
+- The vectors and Core's worked examples carry exact values. The first draft
+  rounded each term to three places, so the kickoff example read R = 0.540
+  and E_trust = 43.70 where Core's formulas give 0.53975 and 43.72375, and
+  an implementation that computed exactly failed the vectors. The weight
+  regression gate now recomputes them. Found by @martherus.
 
 A conformant implementation that aggregates six inputs, or that accepts the
 criticality value from the action request, stops conforming, so this requires
