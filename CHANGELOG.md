@@ -1,3 +1,35 @@
+# Changelog
+
+What changed between releases of the KTP RFC series, and what forced each
+change.
+
+This file records **normative** changes: an entry is here if a conformant
+implementation of the previous release stops being conformant, or if new
+required behavior appears. Editorial work — reflow, link repair, prose that
+changes no requirement — is not listed.
+
+Every entry names the finding behind it. A change with no finding behind it is
+a preference, and preferences do not belong in a normative set. Three findings
+account for most of v2.0.0, and they are named throughout:
+
+- **the reachability matrix** — `109-90-reachability.py`, which checks every
+  numeric gate in the set against every other at four values of `R`. It was
+  written because three arithmetic defects had already been found by hand, one
+  at a time.
+- **the falsification program** — the comparison corpus that asked what the
+  specification would have to say to be wrong about something, and produced
+  obligations the set had not discharged.
+- **the corpus audit** — reading the files. Most of what follows was found by
+  one document being read next to another that contradicted it.
+
+Read alongside [`VERSIONING.md`](VERSIONING.md) (what MAJOR, MINOR and PATCH
+mean here, and why a published tag is never moved),
+[`SECURITY-NOTES.md`](SECURITY-NOTES.md) (defects in a published version,
+recorded when found rather than held for the release that corrects them), and
+[`MIGRATION.md`](MIGRATION.md) (what a v1.0.1 implementer has to change).
+
+---
+
 ## Unreleased — capacity, risk, emergency authorization, Oracle consensus, trajectory signatures, readiness, and human eligibility, and the demand-side criticality input
 
 ### `moment_criticality` leaves the Risk Factor
