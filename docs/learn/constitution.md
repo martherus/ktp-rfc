@@ -222,7 +222,7 @@ Five weighted inputs shape risk; the criticality of the moment is a demand input
 === "Risk Factors"
     Digital Trust is derived from the **five weighted Risk Factor inputs and the Soul veto**:
 
-    $$R = \sum_{i=1}^{6} w_i x_i$$
+    $$R = \sum_{i=1}^{5} w_i x_i$$
 
     | Input | Analogy (informative) |
     |-------|-----------------------|
@@ -233,7 +233,7 @@ Five weighted inputs shape risk; the criticality of the moment is a demand input
     | `update_resistance` | Inertia — Inertial Mass |
     | `attestation_coverage` | Observer — Frame of Reference |
 
-    The six are weighted contributors to the Risk Factor. **Soul** is evaluated before aggregation and is never a weight: no score, however good, can outvote a sovereignty constraint.
+    Five are weighted contributors to the Risk Factor; `moment_criticality` is a demand input that raises A. **Soul** is evaluated before aggregation and is never a weight: no score, however good, can outvote a sovereignty constraint.
 
 === "Inputs"
     #### I. `evidence_density`

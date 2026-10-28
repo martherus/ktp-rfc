@@ -1,7 +1,7 @@
 ---
 title: "Kinetic Trust Protocol (KTP) - Context Signal Sensor Specification"
 abbrev: "KTP-SENSORS"
-date: 2026-10-27
+date: 2026-10-28
 category: exp
 ipr: trust200902
 
@@ -167,7 +167,7 @@ Both feeds above declare a stale_threshold_ms of four to five times their refres
 
 ## Risk Domains (Node, Neighborhood, Global)
 
-This section is informative. The Risk Factor is defined once, in {{KTP-CORE}} Section 5.2 (Risk Factor (R)), as the weighted sum of the six inputs with the weights of {{KTP-CORE}} Section 6.5 (Domain Weights). Nothing in this section defines R, and no weight named here is a weight of that sum. This section describes one technique for keeping a single input steady against local noise before the input enters the Risk Factor.
+This section is informative. The Risk Factor is defined once, in {{KTP-CORE}} Section 5.2 (Risk Factor (R)), as the weighted sum of the five inputs with the weights of {{KTP-CORE}} Section 6.5 (Domain Weights). Nothing in this section defines R, and no weight named here is a weight of that sum. This section describes one technique for keeping a single input steady against local noise before the input enters the Risk Factor.
 
 The problem the technique addresses is oscillation. Consider an agent operating near the Operator/Analyst tier boundary (E_trust ≈ 72). If one sensor on one node reports a momentary spike, a brief CPU surge or a transient network blip, the input that sensor populates can move enough to carry R across the boundary and back, and the agent transitions Operator to Analyst to Operator, disrupting operations and creating audit noise.
 
@@ -242,7 +242,7 @@ The value one input takes is the weighted average of its scope feeds, by Section
 
 Where w_node + w_neighborhood + w_global = 1.0 and s is the value of one input in \[0, 1].
 
-The example weights give the neighborhood scope primary influence, which provides stability while remaining responsive. They are feed weights of one input. They are not the weights of {{KTP-CORE}} Section 5.2 (Risk Factor (R)), which apply to the six inputs after each has taken its value, and the sum above is not R.
+The example weights give the neighborhood scope primary influence, which provides stability while remaining responsive. They are feed weights of one input. They are not the weights of {{KTP-CORE}} Section 5.2 (Risk Factor (R)), which apply to the five inputs after each has taken its value, and the sum above is not R.
 
 2.3.3.  Anti-Oscillation Mechanics
 

@@ -91,15 +91,15 @@ across seven domains, canonical as JSON in [`catalog/`](catalog/):
 | `time` | 275 | `meta` | 17 |
 | `soul` | 252 | **total** | **1,644** |
 
-**Risk Factors** — the scoring layer that turns measurements into `R`. Six
-weighted inputs, named by their JSON keys:
+**Risk Factors** — the scoring layer that turns measurements into `R`. Five
+weighted inputs and one demand input, named by their JSON keys:
 
 | Key | What it carries |
 |---|---|
 | `evidence_density` | Weight of presence in the environment: occupancy, electromagnetic interference, spatial congestion |
 | `trust_trend` | Rate and direction of change in standing |
 | `adversarial_pressure` | Measured adversarial stress |
-| `moment_criticality` | Criticality of the moment or phase — cutovers, deadlines, protected periods |
+| `moment_criticality` | Criticality of the moment or phase — cutovers, deadlines, protected periods. A demand input: it raises `A` and is not a weight in `R` |
 | `update_resistance` | Topological importance of the asset: how hard it is to move or stop, and how much depends on it |
 | `attestation_coverage` | How much of the agent's activity is witnessed and attestable |
 

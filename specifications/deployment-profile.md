@@ -178,7 +178,7 @@ The field MUST appear on any decision record where an undefined input resolved t
 3. every aggregation against the alias sets in `catalog/index.json` (at most one member of any set per aggregation, and populated sets declared under `aliases`);
 4. every aggregated `zero_one: "synthetic"` signal against `normalization` (entry present);
 5. finite `envelope_thresholds` numbers satisfying `0 <= m_veto < m_allow` where declared; omission alone selects the existing default;
-6. six finite factor weights in `(0, 1]`, with an exact parsed-decimal total of 1;
+6. five finite factor weights in `(0, 1]`, with an exact parsed-decimal total of 1;
 7. the shape of an optional `emergency_policy` reference; omission disables that capability;
 8. the shape, distinct member labels, integer fault budget, and quorum bounds of an `oracle_consensus` declaration; omission provides no Byzantine Mesh agreement claim;
 9. the required `standing_policy` reference to `history-with-scoped-readiness-v1` and rejection of the obsolete `standing_decay_rate` declaration in active v3 profiles.

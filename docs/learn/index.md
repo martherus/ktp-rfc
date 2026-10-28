@@ -37,7 +37,7 @@ The Kinetic Trust Protocol represents a paradigm shift in how we think about dig
 
     ---
 
-    The six named measurements that drive trust: evidence_density, trust_trend, update_resistance, adversarial_pressure, moment_criticality, attestation_coverage, and the Soul veto.
+    The six named measurements that drive trust: evidence_density, trust_trend, update_resistance, adversarial_pressure, attestation_coverage, and the Soul veto. moment_criticality, the criticality of the moment, is a demand input that raises A.
 
     [Explore the Risk Factors →](risk-factors.md)
 
