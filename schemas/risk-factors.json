@@ -1,8 +1,8 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://kinetic-trust-protocol.net/specs/schemas/v2/risk-factors.json",
-  "title": "KTP Risk Factors",
-  "description": "The five weighted Risk Factor inputs to the risk aggregate R for the Kinetic Trust Protocol. The Soul veto is evaluated before aggregation and is not a term in it (see soul-constraint.json); five-plus-veto, not six. moment_criticality is not a Risk Factor: it is a demand-side input declared under the deployment profile's demand_inputs (KTP-CORE L14).",
+  "$id": "https://kinetic-trust-protocol.net/specs/schemas/v3/risk-factors.json",
+  "title": "KTP Risk Factors — Unreleased v3",
+  "description": "The five weighted Risk Factor inputs to the risk aggregate R for the Kinetic Trust Protocol. The Soul veto is evaluated before aggregation and is not a term in it (see soul-constraint.json); five-plus-veto, not six. moment_criticality is not a Risk Factor: it is a demand-side input declared under the deployment profile's demand_inputs (KTP-CORE L14). The published v2 schema, with six weighted inputs, is archived separately as risk-factors-legacy-v2.json.",
   "type": "object",
   "required": [
     "adversarial_pressure",

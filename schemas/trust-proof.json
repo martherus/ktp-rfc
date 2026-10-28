@@ -1,8 +1,8 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://kinetic-trust-protocol.net/specs/schemas/v2/trust-proof.json",
-  "title": "KTP Trust Proof",
-  "description": "Signed token carrying Trust Score and environmental context for the Kinetic Trust Protocol",
+  "$id": "https://kinetic-trust-protocol.net/specs/schemas/v3/trust-proof.json",
+  "title": "KTP Trust Proof — Unreleased v3",
+  "description": "Signed token carrying Trust Score and environmental context for the Kinetic Trust Protocol. Its context is the five-input v3 Risk Factors object. The published v2 schema is archived separately as trust-proof-legacy-v2.json.",
   "type": "object",
   "required": [
     "iss",

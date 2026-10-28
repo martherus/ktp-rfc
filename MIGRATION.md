@@ -607,3 +607,11 @@ An implementation computes `R` over five inputs, declares a supplier for the
 demand input in the deployment profile, and reads an absent, stale,
 unverifiable or differently bound value as the most critical moment.
 
+Two schemas change shape, so they take v3 identifiers:
+`https://kinetic-trust-protocol.net/specs/schemas/v3/risk-factors.json`, and
+`https://kinetic-trust-protocol.net/specs/schemas/v3/trust-proof.json`, whose
+`context` is that object. The published v2 files stay unchanged at their v2
+identifiers and are kept as `schemas/risk-factors-legacy-v2.json` and
+`schemas/trust-proof-legacy-v2.json`, so a v2 proof or record still validates
+against the schema it was issued under.
+

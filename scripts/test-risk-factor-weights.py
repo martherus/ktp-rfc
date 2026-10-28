@@ -10,9 +10,13 @@ checker additionally requires the exact sum of Fraction(str(weight)) to be
 one, using the numeric values produced by the existing JSON parser. These
 tests do not claim to preserve original JSON number tokens. The arithmetic
 tests check the published weighted-risk formula, not a runtime authorizer.
+
+It also pins the v3 identifiers of the Risk Factors and Trust Proof schemas
+and the byte-preserved v2 files their v2 identifiers still name.
 """
 
 import copy
+import hashlib
 import importlib.util
 import itertools
 import json
@@ -24,8 +28,10 @@ import tempfile
 import unittest
 from fractions import Fraction
 from pathlib import Path
+from urllib.parse import urljoin
 
 from jsonschema import Draft202012Validator
+from referencing import Registry, Resource
 
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -245,6 +251,81 @@ class RiskFactorWeightTests(unittest.TestCase):
                         for base in (Fraction(0), Fraction(50), Fraction(100)):
                             self.assertLessEqual(base * (1 - increased_risk),
                                                  base * (1 - risk))
+
+
+
+class RiskFactorsSchemaIdentityTests(unittest.TestCase):
+    """The five-input objects take v3 identifiers; the published v2 bytes stay
+    where citations of the v2 identifiers land."""
+
+    LEGACY = {
+        "risk-factors-legacy-v2.json": (
+            "a2f497489b94e727398278794389e6fbae0a44c851f19a1e5d1daafc1daa16e0",
+            "/v2/risk-factors.json"),
+        "trust-proof-legacy-v2.json": (
+            "41d5dd2506893094d41e21193cf95eed396dc99b8d32d7264f50ea1a7972d4e0",
+            "/v2/trust-proof.json"),
+    }
+
+    @classmethod
+    def setUpClass(cls):
+        cls.schemas = {path.name: json.loads(path.read_text())
+                       for path in sorted((ROOT / "schemas").glob("*.json"))}
+        cls.registry = Registry().with_resources(
+            (schema["$id"], Resource.from_contents(schema))
+            for schema in cls.schemas.values())
+        cls.five = cls.schemas["risk-factors.json"]["examples"][0]
+        cls.six = cls.schemas["risk-factors-legacy-v2.json"]["examples"][0]
+
+    def risk_factors_ref(self, name):
+        """Resolve the one reference a schema makes to a Risk Factors object."""
+        found = []
+
+        def walk(node):
+            if isinstance(node, dict):
+                ref = node.get("$ref")
+                if isinstance(ref, str) and ref.endswith("risk-factors.json"):
+                    found.append(ref)
+                for value in node.values():
+                    walk(value)
+            elif isinstance(node, list):
+                for value in node:
+                    walk(value)
+
+        walk(self.schemas[name])
+        self.assertEqual(1, len(found), name)
+        return urljoin(self.schemas[name]["$id"], found[0])
+
+    def accepts(self, ref, instance):
+        validator = Draft202012Validator({"$ref": ref}, registry=self.registry)
+        return validator.is_valid(instance)
+
+    def test_legacy_files_are_the_published_bytes(self):
+        for name, (digest, suffix) in self.LEGACY.items():
+            with self.subTest(schema=name):
+                data = (ROOT / "schemas" / name).read_bytes()
+                self.assertEqual(digest, hashlib.sha256(data).hexdigest())
+                self.assertTrue(json.loads(data)["$id"].endswith(suffix))
+
+    def test_active_schemas_carry_v3_identifiers(self):
+        risk = self.schemas["risk-factors.json"]
+        self.assertTrue(risk["$id"].endswith("/v3/risk-factors.json"))
+        self.assertEqual(sorted(FACTORS), sorted(risk["required"]))
+        self.assertTrue(self.schemas["trust-proof.json"]["$id"]
+                        .endswith("/v3/trust-proof.json"))
+
+    def test_each_reference_resolves_to_its_own_version(self):
+        cases = {
+            "trust-proof.json": "five",
+            "transaction-record.json": "five",
+            "trust-proof-legacy-v2.json": "six",
+            "transaction-record-legacy-v2.json": "six",
+        }
+        for name, shape in cases.items():
+            with self.subTest(schema=name):
+                ref = self.risk_factors_ref(name)
+                self.assertEqual(shape == "five", self.accepts(ref, self.five))
+                self.assertEqual(shape == "six", self.accepts(ref, self.six))
 
 
 if __name__ == "__main__":

@@ -2,7 +2,7 @@
 title: "Kinetic Trust Protocol (KTP) - Core Specification"
 abbrev: "KTP-CORE"
 docname: draft-perkins-ktp-core-00
-date: 2026-10-27
+date: 2026-10-28
 category: exp
 ipr: trust200902
 
@@ -2111,8 +2111,8 @@ B.1.  Trust Proof Schema
 
 The canonical schema is the published file, not this appendix.
 
-Location: https://kinetic-trust-protocol.net/specs/schemas/v2/trust-proof.json
+Location: https://kinetic-trust-protocol.net/specs/schemas/v3/trust-proof.json
 
-SHA-256 of the canonical file at the time this document was produced: 41d5dd2506893094d41e21193cf95eed396dc99b8d32d7264f50ea1a7972d4e0
+SHA-256 of the canonical file at the time this document was produced: 012d4357664cfd35f388e5897e58cb0413f55a09b40ca5dbb4ebc9732520c1ac
 
-The published file carries the v2 claims (the declared peer share, applicable ceilings, advancement floor, and root instrument) and references the risk-factors schema.  This appendix previously carried a hand-copied inline schema; hand copies of a schema drift, and this document's did — the copy disagreed with the published file in four ways while nobody could validate either.  A reference plus a hash cannot drift silently: a mismatch is detectable, an edit to the file changes the hash, and the appendix stops being a second authority.
+The file carries the v2 claims (the declared peer share, applicable ceilings, advancement floor, and root instrument) and references the v3 risk-factors schema, so its context is the five weighted inputs.  The published v2 file is unchanged at its v2 location and is kept in the repository as trust-proof-legacy-v2.json.  This appendix previously carried a hand-copied inline schema; hand copies of a schema drift, and this document's did — the copy disagreed with the published file in four ways while nobody could validate either.  A reference plus a hash cannot drift silently: a mismatch is detectable, an edit to the file changes the hash, and the appendix stops being a second authority.
