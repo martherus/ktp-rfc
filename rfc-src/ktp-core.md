@@ -2020,7 +2020,7 @@ The canonical schema is the published file, not this appendix.
 
 Location: https://kinetic-trust-protocol.net/specs/schemas/v3/trust-proof.json
 
-SHA-256 of the canonical file at the time this document was produced: 0e5cad90029089c53187aca6841761a22a099231bd22c3b06f12ddf902aab898
+SHA-256 of the canonical file at the time this document was produced: 93b68a2f197572fda44bac7e04a8d538ce74dd202a6baa430cd506f9e1bd6283
 
 The file carries the proposed closed v3 claims and explicit gate/version
 contract, with fixed absolute references to the existing Risk Factor and Soul
