@@ -87,7 +87,7 @@
           "description": "The five weighted Risk Factor inputs (Soul is carried separately as a veto, not a term; moment_criticality is a demand input and is not carried here)"
         },
         "soul": {
-          "$ref": "soul-constraint.json",
+          "$ref": "https://kinetic-trust-protocol.net/specs/schemas/v2/soul-constraint.json",
           "description": "Sovereignty constraint evaluation"
         },
         "lineage": {
@@ -245,7 +245,7 @@
         },
         "lineage": "guarantor",
         "generation": 7,
-        "resilience_hash": "sha256:abc123def456789012345678901234567890123456789012345678901234",
+        "resilience_hash": "sha256:abc123def4567890123456789012345678901234567890123456789012345678",
         "zone": "zone-blue-prod-01",
         "oracle_quorum": "3-of-5",
         "peer_share": 0,
@@ -302,7 +302,7 @@
         "lineage": "sponsored",
         "generation": 2,
         "sponsor": "agent:guarantor:7gen:optimized:a1b2c3d4",
-        "resilience_hash": "sha256:fedcba987654321098765432109876543210987654321098765432109876",
+        "resilience_hash": "sha256:fedcba9876543210987654321098765432109876543210987654321098765432",
         "zone": "zone-blue-research",
         "oracle_quorum": "2-of-3",
         "peer_share": 0,

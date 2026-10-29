@@ -2,7 +2,7 @@
 title: "Kinetic Trust Protocol (KTP) - Core Specification"
 abbrev: "KTP-CORE"
 docname: draft-perkins-ktp-core-00
-date: 2026-10-28
+date: 2026-10-29
 category: exp
 ipr: trust200902
 
@@ -1921,8 +1921,9 @@ not the least.
 An externally supplied input enters only on the demand or supervision side. It
 **MUST NOT** be supplied by the requester or by a party acting for it, and the
 deployment **MUST** declare its supplier. The supplier is ordinarily the
-deployment's own event calendar, maintenance schedule or mission-phase feed; the
-feeds KTP-SENSORS lists for this input remain its feeds.
+deployment's own event calendar, maintenance schedule or mission-phase feed. A
+demand input is not configured as a sensor factor; KTP-SENSORS describes,
+informatively, how a supplier can derive its value from those schedules.
 
 The declaration and evaluation boundary cases for a demand input are published
 in specifications/conformance/demand-input-v1.json. They fix decision
@@ -2113,6 +2114,6 @@ The canonical schema is the published file, not this appendix.
 
 Location: https://kinetic-trust-protocol.net/specs/schemas/v3/trust-proof.json
 
-SHA-256 of the canonical file at the time this document was produced: 012d4357664cfd35f388e5897e58cb0413f55a09b40ca5dbb4ebc9732520c1ac
+SHA-256 of the canonical file at the time this document was produced: 34faa5f2d51ced455aa92f90c3e00353cf209d9a81518d5c9fb14d7589106c32
 
 The file carries the v2 claims (the declared peer share, applicable ceilings, advancement floor, and root instrument) and references the v3 risk-factors schema, so its context is the five weighted inputs.  The published v2 file is unchanged at its v2 location and is kept in the repository as trust-proof-legacy-v2.json.  This appendix previously carried a hand-copied inline schema; hand copies of a schema drift, and this document's did — the copy disagreed with the published file in four ways while nobody could validate either.  A reference plus a hash cannot drift silently: a mismatch is detectable, an edit to the file changes the hash, and the appendix stops being a second authority.

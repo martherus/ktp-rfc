@@ -53,7 +53,8 @@ the number that loosened the constraint. Proposed in #161.
   input enters or leaves.
 - Sensors adds a third contribution type, "demand" (raises `A` only), and
   moves the `moment_criticality` section to the end of its chapter as a demand
-  input; its feeds and normalization are unchanged.
+  input. A demand input is not configured as a sensor factor; its feed table
+  stays as an informative description of how a supplier derives the value.
 - The deployment profile gains a `demand_inputs` declaration (supplier, unit,
   source per input). `risk-factors.json`, `deployment-profile.json`,
   `trust-proof.json` and `sensor-config.json` follow; the declaration checker

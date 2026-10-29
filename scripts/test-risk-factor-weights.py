@@ -328,6 +328,39 @@ class RiskFactorsSchemaIdentityTests(unittest.TestCase):
                 self.assertEqual(shape == "five", self.accepts(ref, self.five))
                 self.assertEqual(shape == "six", self.accepts(ref, self.six))
 
+    # The preserved v2 bytes are what v2.1.0 published, defects included.
+    PUBLISHED_EXAMPLE_DEFECTS = {
+        "trust-proof-legacy-v2.json": "v2.1.0 published resilience_hash examples "
+                                      "with 60 hex digits against a 64-digit pattern",
+    }
+
+    def references(self, node):
+        if isinstance(node, dict):
+            if isinstance(node.get("$ref"), str):
+                yield node["$ref"]
+            for value in node.values():
+                yield from self.references(value)
+        elif isinstance(node, list):
+            for value in node:
+                yield from self.references(value)
+
+    def test_every_reference_resolves(self):
+        for name, schema in self.schemas.items():
+            resolver = self.registry.resolver(base_uri=schema["$id"])
+            for ref in self.references(schema):
+                with self.subTest(schema=name, ref=ref):
+                    resolver.lookup(ref)
+
+    def test_every_example_validates(self):
+        for name, schema in self.schemas.items():
+            if name in self.PUBLISHED_EXAMPLE_DEFECTS:
+                continue
+            validator = Draft202012Validator(schema, registry=self.registry)
+            for index, example in enumerate(schema.get("examples", [])):
+                with self.subTest(schema=name, example=index):
+                    self.assertEqual([], [error.message for error in
+                                          validator.iter_errors(example)])
+
 
 
 class DemandVectorArithmeticTests(unittest.TestCase):
