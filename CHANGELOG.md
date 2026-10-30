@@ -59,10 +59,13 @@ the number that loosened the constraint. Proposed in #161.
   source per input). `risk-factors.json`, `deployment-profile.json`,
   `trust-proof.json` and `sensor-config.json` follow; the declaration checker
   and the weight regression gate check five factors and the new declaration.
-- `risk-factors.json` and `trust-proof.json` take v3 identifiers, and the
-  published v2 files are kept byte for byte as `risk-factors-legacy-v2.json`
-  and `trust-proof-legacy-v2.json`, as `deployment-profile.json` and
-  `transaction-record.json` were. The first draft rewrote the v2 Risk Factors
+- `risk-factors.json`, `trust-proof.json` and `sensor-config.json` take v3
+  identifiers, and the published v2 files are kept byte for byte as
+  `risk-factors-legacy-v2.json`, `trust-proof-legacy-v2.json` and
+  `sensor-config-legacy-v2.json`, as `deployment-profile.json` and
+  `transaction-record.json` were; `moment_criticality` leaves the sensor
+  configuration's `dimension` enum, because a demand input is not a sensor
+  factor. The first draft rewrote the v2 Risk Factors
   schema in place, so one published identifier named two schemas: a validator
   that fetched it from its published address rejected every five-input
   context, and the preserved v2 transaction record, which refers to it,

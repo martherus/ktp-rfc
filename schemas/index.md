@@ -23,7 +23,8 @@ the source.
 | Readiness Attestation v1 (unreleased) | [`readiness-attestation.json`](readiness-attestation.json) | Complete signed assessment, subject configuration, scope, challenge and observations |
 | Readiness Decision v1 (unreleased) | [`readiness-decision.json`](readiness-decision.json) | Signed binding of actual request and complete ordinary proof to current readiness evidence |
 | Emergency Policy | [`emergency-policy.json`](emergency-policy.json) | Exact emergency scope and protected change-control declarations; approval and activation require separate verification |
-| Sensor Configuration | [`sensor-config.json`](sensor-config.json) | A feed's identity, refresh and failure behaviour |
+| Sensor Configuration v3 (unreleased) | [`sensor-config.json`](sensor-config.json) | A feed's identity, refresh and failure behavior; its dimension is one of the five weighted inputs or the veto |
+| Legacy Sensor Configuration v2 | [`sensor-config-legacy-v2.json`](sensor-config-legacy-v2.json) | Byte-preserved published schema, whose dimension enum includes moment_criticality, for interpreting v2 configurations |
 | Soul Constraint | [`soul-constraint.json`](soul-constraint.json) | The veto: present or absent, never a seventh weight |
 | Transaction Record v3 (unreleased) | [`transaction-record.json`](transaction-record.json) | Complete canonical record and staged JWS envelopes; signatures and authenticated head evidence require separate verification |
 | Legacy Transaction Record v2 | [`transaction-record-legacy-v2.json`](transaction-record-legacy-v2.json) | Byte-preserved historical schema for archive interpretation; not a v3 authority acceptance path |

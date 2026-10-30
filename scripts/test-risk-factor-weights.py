@@ -266,6 +266,9 @@ class RiskFactorsSchemaIdentityTests(unittest.TestCase):
         "trust-proof-legacy-v2.json": (
             "41d5dd2506893094d41e21193cf95eed396dc99b8d32d7264f50ea1a7972d4e0",
             "/v2/trust-proof.json"),
+        "sensor-config-legacy-v2.json": (
+            "a9f70585fc9ba85334f972dc8dbccb9dfa0446cb18ce3d8b79cadf5d59f3ad22",
+            "/v2/sensor-config.json"),
     }
 
     @classmethod
@@ -314,6 +317,10 @@ class RiskFactorsSchemaIdentityTests(unittest.TestCase):
         self.assertEqual(sorted(FACTORS), sorted(risk["required"]))
         self.assertTrue(self.schemas["trust-proof.json"]["$id"]
                         .endswith("/v3/trust-proof.json"))
+        sensors = self.schemas["sensor-config.json"]
+        self.assertTrue(sensors["$id"].endswith("/v3/sensor-config.json"))
+        self.assertEqual(sorted(FACTORS + ["soul"]),
+                         sorted(sensors["properties"]["dimension"]["enum"]))
 
     def test_each_reference_resolves_to_its_own_version(self):
         cases = {
