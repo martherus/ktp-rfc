@@ -377,8 +377,8 @@ issuer binding, inputs, bounded outside terminator chain, current or
 non_renewable status and original end time. A no-credit projection uses kind
 none, status none and a required established reason; it MUST NOT carry
 credit-bearing fields or imply an optional rootless design. Its root term is
-zero, software base trust is capped at 70 alongside every tighter ceiling, and
-the agent remains below Operator until someone stands behind it again.
+zero, base trust for any subject is capped at 70 alongside every tighter ceiling, and
+the subject remains below Operator until someone stands behind it again.
 Detailed claims/findings remain in the owning lifecycle/evaluation record.
 Person subjects use the same canonical proof and attestation branch under Core;
 eligibility and capacity remain separate prerequisites. The accountability
@@ -2020,7 +2020,7 @@ The canonical schema is the published file, not this appendix.
 
 Location: https://kinetic-trust-protocol.net/specs/schemas/v3/trust-proof.json
 
-SHA-256 of the canonical file at the time this document was produced: 93b68a2f197572fda44bac7e04a8d538ce74dd202a6baa430cd506f9e1bd6283
+SHA-256 of the canonical file at the time this document was produced: cb1cf9d02ec3a32244a48b6b35d1ed95423c401a2293cda8713292ac518f3f4f
 
 The file carries the proposed closed v3 claims and explicit gate/version
 contract, with fixed absolute references to the existing Risk Factor and Soul
