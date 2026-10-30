@@ -67,7 +67,6 @@ Read these before you write anything. They are the difference between a contribu
    remains a strict standalone parity check. The separate text-generation
    check still requires the kramdown/xml2rfc toolchain.
 
-
 4. **One PR per decision.** The PR names its issue and its entry in [`DECISIONS.md`](DECISIONS.md). A PR that carries two decisions gets split.
 
 5. **Fill in the PR template.** It lists the gates. Every box is a real question.
