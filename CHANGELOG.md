@@ -30,7 +30,7 @@ recorded when found rather than held for the release that corrects them), and
 
 ---
 
-## Unreleased — capacity, risk, emergency authorization, Oracle consensus, trajectory signatures, readiness, and human eligibility, and the demand-side criticality input
+## Unreleased — capacity, risk, emergency authorization, Oracle consensus, trajectory signatures, readiness, human eligibility, and the demand-side criticality input
 
 ### `moment_criticality` leaves the Risk Factor
 
